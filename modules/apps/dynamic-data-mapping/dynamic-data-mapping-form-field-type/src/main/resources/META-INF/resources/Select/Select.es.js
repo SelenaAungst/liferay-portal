@@ -390,6 +390,7 @@ const Select = ({
 		<ClayTooltipProvider>
 			<div
 				{...accessibleProps}
+				aria-expanded={expand}
 				data-tooltip-align="top"
 				{...getTooltipTitle({
 					placeholder: Liferay.Language.get('choose-an-option'),

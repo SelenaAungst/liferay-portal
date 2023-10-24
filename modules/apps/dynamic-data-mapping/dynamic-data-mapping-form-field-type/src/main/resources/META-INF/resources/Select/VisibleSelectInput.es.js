@@ -6,7 +6,6 @@
 import './VisibleSelectInput.scss';
 
 import ClayButton from '@clayui/button';
-import ClayIcon from '@clayui/icon';
 import ClayLabel from '@clayui/label';
 import classNames from 'classnames';
 import React, {forwardRef} from 'react';
@@ -45,7 +44,7 @@ const OptionSelected = ({isPlaceholder, label}) => (
 const VisibleSelectInput = forwardRef(
 	(
 		{
-			className,
+			expanded,
 			id,
 			multiple,
 			onClick,
@@ -77,7 +76,7 @@ const VisibleSelectInput = forwardRef(
 
 		return (
 			<ClayButton
-				aria-expanded="false"
+				aria-expanded={expanded}
 				aria-haspopup="true"
 				className="form-control form-control-select lfr__ddm-select-input-trigger"
 				displayType={null}

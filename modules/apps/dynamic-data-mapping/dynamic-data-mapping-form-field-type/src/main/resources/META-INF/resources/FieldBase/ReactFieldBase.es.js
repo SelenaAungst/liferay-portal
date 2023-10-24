@@ -235,6 +235,8 @@ export function FieldBase({
 		type === 'radio';
 	const showPopover = fieldName === 'inputMaskFormat';
 	const showFor =
+		type === 'date' ||
+		type === 'document_library' ||
 		type === 'text' ||
 		type === 'numeric' ||
 		type === 'image' ||

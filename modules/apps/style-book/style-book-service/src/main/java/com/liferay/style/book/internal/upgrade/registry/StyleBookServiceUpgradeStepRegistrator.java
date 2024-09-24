@@ -85,4 +85,5 @@ public class StyleBookServiceUpgradeStepRegistrator
 			UpgradeProcessFactory.addColumns(
 				"StyleBookEntryVersion", "themeId VARCHAR(255) null"));
 	}
+
 }

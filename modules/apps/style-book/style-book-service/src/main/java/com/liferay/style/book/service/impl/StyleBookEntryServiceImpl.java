@@ -38,13 +38,9 @@ public class StyleBookEntryServiceImpl extends StyleBookEntryServiceBaseImpl {
 			String themeId)
 		throws PortalException {
 
-		_portletResourcePermission.check(
-			getPermissionChecker(), groupId,
-			StyleBookActionKeys.MANAGE_STYLE_BOOK_ENTRIES);
-
-		return styleBookEntryLocalService.addStyleBookEntry(
-			externalReferenceCode, getUserId(), groupId, false,
-			StringPool.BLANK, name, styleBookEntryKey, serviceContext, themeId);
+		return addStyleBookEntry(
+			externalReferenceCode, groupId, StringPool.BLANK, name,
+			styleBookEntryKey, serviceContext, themeId);
 	}
 
 	@Override

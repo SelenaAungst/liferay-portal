@@ -5,14 +5,19 @@
 
 package com.liferay.style.book.web.internal.portlet.action;
 
+import com.liferay.client.extension.type.manager.CETManager;
 import com.liferay.frontend.token.definition.FrontendTokenDefinitionRegistry;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
+import com.liferay.portal.kernel.util.Portal;
 import com.liferay.site.provider.GroupURLProvider;
 import com.liferay.style.book.constants.StyleBookPortletKeys;
+import com.liferay.style.book.web.internal.display.context.EditStyleBookEntryDisplayContext;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -40,8 +45,22 @@ public class EditStyleBookEntryMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			GroupURLProvider.class.getName(), _groupURLProvider);
 
+		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
+			renderRequest);
+
+		EditStyleBookEntryDisplayContext editStyleBookEntryDisplayContext =
+			new EditStyleBookEntryDisplayContext(
+				httpServletRequest, renderRequest, renderResponse, _cetManager);
+
+		renderRequest.setAttribute(
+			EditStyleBookEntryDisplayContext.class.getName(),
+			editStyleBookEntryDisplayContext);
+
 		return "/edit_style_book_entry.jsp";
 	}
+
+	@Reference
+	private CETManager _cetManager;
 
 	@Reference
 	private FrontendTokenDefinitionRegistry _frontendTokenDefinitionRegistry;
@@ -51,5 +70,8 @@ public class EditStyleBookEntryMVCRenderCommand implements MVCRenderCommand {
 
 	@Reference
 	private ItemSelector _itemSelector;
+
+	@Reference
+	private Portal _portal;
 
 }

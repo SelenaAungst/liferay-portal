@@ -499,24 +499,29 @@ public class StyleBookEntryPersistenceTest {
 	}
 
 	@Test
-	public void testCountByG_T() throws Exception {
-		_persistence.countByG_T(RandomTestUtil.nextLong(), "");
+	public void testCountByG_D_T() throws Exception {
+		_persistence.countByG_D_T(
+			RandomTestUtil.nextLong(), RandomTestUtil.randomBoolean(), "");
 
-		_persistence.countByG_T(0L, "null");
+		_persistence.countByG_D_T(0L, RandomTestUtil.randomBoolean(), "null");
 
-		_persistence.countByG_T(0L, (String)null);
+		_persistence.countByG_D_T(
+			0L, RandomTestUtil.randomBoolean(), (String)null);
 	}
 
 	@Test
-	public void testCountByG_T_Head() throws Exception {
-		_persistence.countByG_T_Head(
-			RandomTestUtil.nextLong(), "", RandomTestUtil.randomBoolean());
+	public void testCountByG_D_T_Head() throws Exception {
+		_persistence.countByG_D_T_Head(
+			RandomTestUtil.nextLong(), RandomTestUtil.randomBoolean(), "",
+			RandomTestUtil.randomBoolean());
 
-		_persistence.countByG_T_Head(
-			0L, "null", RandomTestUtil.randomBoolean());
+		_persistence.countByG_D_T_Head(
+			0L, RandomTestUtil.randomBoolean(), "null",
+			RandomTestUtil.randomBoolean());
 
-		_persistence.countByG_T_Head(
-			0L, (String)null, RandomTestUtil.randomBoolean());
+		_persistence.countByG_D_T_Head(
+			0L, RandomTestUtil.randomBoolean(), (String)null,
+			RandomTestUtil.randomBoolean());
 	}
 
 	@Test

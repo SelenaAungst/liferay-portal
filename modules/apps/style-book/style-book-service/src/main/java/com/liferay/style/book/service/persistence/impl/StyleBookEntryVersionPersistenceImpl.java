@@ -8351,51 +8351,59 @@ public class StyleBookEntryVersionPersistenceImpl
 	private static final String _FINDER_COLUMN_G_SBEK_VERSION_VERSION_2 =
 		"styleBookEntryVersion.version = ?";
 
-	private FinderPath _finderPathWithPaginationFindByG_T;
-	private FinderPath _finderPathWithoutPaginationFindByG_T;
-	private FinderPath _finderPathCountByG_T;
+	private FinderPath _finderPathWithPaginationFindByG_D_T;
+	private FinderPath _finderPathWithoutPaginationFindByG_D_T;
+	private FinderPath _finderPathCountByG_D_T;
 
 	/**
-	 * Returns all the style book entry versions where groupId = &#63; and themeId = &#63;.
+	 * Returns all the style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @return the matching style book entry versions
 	 */
 	@Override
-	public List<StyleBookEntryVersion> findByG_T(long groupId, String themeId) {
-		return findByG_T(
-			groupId, themeId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<StyleBookEntryVersion> findByG_D_T(
+		long groupId, boolean defaultStyleBookEntry, String themeId) {
+
+		return findByG_D_T(
+			groupId, defaultStyleBookEntry, themeId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the style book entry versions where groupId = &#63; and themeId = &#63;.
+	 * Returns a range of all the style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>StyleBookEntryVersionModelImpl</code>.
 	 * </p>
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param start the lower bound of the range of style book entry versions
 	 * @param end the upper bound of the range of style book entry versions (not inclusive)
 	 * @return the range of matching style book entry versions
 	 */
 	@Override
-	public List<StyleBookEntryVersion> findByG_T(
-		long groupId, String themeId, int start, int end) {
+	public List<StyleBookEntryVersion> findByG_D_T(
+		long groupId, boolean defaultStyleBookEntry, String themeId, int start,
+		int end) {
 
-		return findByG_T(groupId, themeId, start, end, null);
+		return findByG_D_T(
+			groupId, defaultStyleBookEntry, themeId, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the style book entry versions where groupId = &#63; and themeId = &#63;.
+	 * Returns an ordered range of all the style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>StyleBookEntryVersionModelImpl</code>.
 	 * </p>
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param start the lower bound of the range of style book entry versions
 	 * @param end the upper bound of the range of style book entry versions (not inclusive)
@@ -8403,21 +8411,24 @@ public class StyleBookEntryVersionPersistenceImpl
 	 * @return the ordered range of matching style book entry versions
 	 */
 	@Override
-	public List<StyleBookEntryVersion> findByG_T(
-		long groupId, String themeId, int start, int end,
-		OrderByComparator<StyleBookEntryVersion> orderByComparator) {
+	public List<StyleBookEntryVersion> findByG_D_T(
+		long groupId, boolean defaultStyleBookEntry, String themeId, int start,
+		int end, OrderByComparator<StyleBookEntryVersion> orderByComparator) {
 
-		return findByG_T(groupId, themeId, start, end, orderByComparator, true);
+		return findByG_D_T(
+			groupId, defaultStyleBookEntry, themeId, start, end,
+			orderByComparator, true);
 	}
 
 	/**
-	 * Returns an ordered range of all the style book entry versions where groupId = &#63; and themeId = &#63;.
+	 * Returns an ordered range of all the style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>StyleBookEntryVersionModelImpl</code>.
 	 * </p>
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param start the lower bound of the range of style book entry versions
 	 * @param end the upper bound of the range of style book entry versions (not inclusive)
@@ -8426,9 +8437,9 @@ public class StyleBookEntryVersionPersistenceImpl
 	 * @return the ordered range of matching style book entry versions
 	 */
 	@Override
-	public List<StyleBookEntryVersion> findByG_T(
-		long groupId, String themeId, int start, int end,
-		OrderByComparator<StyleBookEntryVersion> orderByComparator,
+	public List<StyleBookEntryVersion> findByG_D_T(
+		long groupId, boolean defaultStyleBookEntry, String themeId, int start,
+		int end, OrderByComparator<StyleBookEntryVersion> orderByComparator,
 		boolean useFinderCache) {
 
 		try (SafeCloseable safeCloseable =
@@ -8444,14 +8455,17 @@ public class StyleBookEntryVersionPersistenceImpl
 				(orderByComparator == null)) {
 
 				if (useFinderCache) {
-					finderPath = _finderPathWithoutPaginationFindByG_T;
-					finderArgs = new Object[] {groupId, themeId};
+					finderPath = _finderPathWithoutPaginationFindByG_D_T;
+					finderArgs = new Object[] {
+						groupId, defaultStyleBookEntry, themeId
+					};
 				}
 			}
 			else if (useFinderCache) {
-				finderPath = _finderPathWithPaginationFindByG_T;
+				finderPath = _finderPathWithPaginationFindByG_D_T;
 				finderArgs = new Object[] {
-					groupId, themeId, start, end, orderByComparator
+					groupId, defaultStyleBookEntry, themeId, start, end,
+					orderByComparator
 				};
 			}
 
@@ -8464,6 +8478,9 @@ public class StyleBookEntryVersionPersistenceImpl
 				if ((list != null) && !list.isEmpty()) {
 					for (StyleBookEntryVersion styleBookEntryVersion : list) {
 						if ((groupId != styleBookEntryVersion.getGroupId()) ||
+							(defaultStyleBookEntry !=
+								styleBookEntryVersion.
+									isDefaultStyleBookEntry()) ||
 							!themeId.equals(
 								styleBookEntryVersion.getThemeId())) {
 
@@ -8480,25 +8497,27 @@ public class StyleBookEntryVersionPersistenceImpl
 
 				if (orderByComparator != null) {
 					sb = new StringBundler(
-						4 + (orderByComparator.getOrderByFields().length * 2));
+						5 + (orderByComparator.getOrderByFields().length * 2));
 				}
 				else {
-					sb = new StringBundler(4);
+					sb = new StringBundler(5);
 				}
 
 				sb.append(_SQL_SELECT_STYLEBOOKENTRYVERSION_WHERE);
 
-				sb.append(_FINDER_COLUMN_G_T_GROUPID_2);
+				sb.append(_FINDER_COLUMN_G_D_T_GROUPID_2);
+
+				sb.append(_FINDER_COLUMN_G_D_T_DEFAULTSTYLEBOOKENTRY_2);
 
 				boolean bindThemeId = false;
 
 				if (themeId.isEmpty()) {
-					sb.append(_FINDER_COLUMN_G_T_THEMEID_3);
+					sb.append(_FINDER_COLUMN_G_D_T_THEMEID_3);
 				}
 				else {
 					bindThemeId = true;
 
-					sb.append(_FINDER_COLUMN_G_T_THEMEID_2);
+					sb.append(_FINDER_COLUMN_G_D_T_THEMEID_2);
 				}
 
 				if (orderByComparator != null) {
@@ -8521,6 +8540,8 @@ public class StyleBookEntryVersionPersistenceImpl
 					QueryPos queryPos = QueryPos.getInstance(query);
 
 					queryPos.add(groupId);
+
+					queryPos.add(defaultStyleBookEntry);
 
 					if (bindThemeId) {
 						queryPos.add(themeId);
@@ -8548,33 +8569,37 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Returns the first style book entry version in the ordered set where groupId = &#63; and themeId = &#63;.
+	 * Returns the first style book entry version in the ordered set where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching style book entry version
 	 * @throws NoSuchEntryVersionException if a matching style book entry version could not be found
 	 */
 	@Override
-	public StyleBookEntryVersion findByG_T_First(
-			long groupId, String themeId,
+	public StyleBookEntryVersion findByG_D_T_First(
+			long groupId, boolean defaultStyleBookEntry, String themeId,
 			OrderByComparator<StyleBookEntryVersion> orderByComparator)
 		throws NoSuchEntryVersionException {
 
-		StyleBookEntryVersion styleBookEntryVersion = fetchByG_T_First(
-			groupId, themeId, orderByComparator);
+		StyleBookEntryVersion styleBookEntryVersion = fetchByG_D_T_First(
+			groupId, defaultStyleBookEntry, themeId, orderByComparator);
 
 		if (styleBookEntryVersion != null) {
 			return styleBookEntryVersion;
 		}
 
-		StringBundler sb = new StringBundler(6);
+		StringBundler sb = new StringBundler(8);
 
 		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
 
 		sb.append("groupId=");
 		sb.append(groupId);
+
+		sb.append(", defaultStyleBookEntry=");
+		sb.append(defaultStyleBookEntry);
 
 		sb.append(", themeId=");
 		sb.append(themeId);
@@ -8585,20 +8610,21 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Returns the first style book entry version in the ordered set where groupId = &#63; and themeId = &#63;.
+	 * Returns the first style book entry version in the ordered set where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching style book entry version, or <code>null</code> if a matching style book entry version could not be found
 	 */
 	@Override
-	public StyleBookEntryVersion fetchByG_T_First(
-		long groupId, String themeId,
+	public StyleBookEntryVersion fetchByG_D_T_First(
+		long groupId, boolean defaultStyleBookEntry, String themeId,
 		OrderByComparator<StyleBookEntryVersion> orderByComparator) {
 
-		List<StyleBookEntryVersion> list = findByG_T(
-			groupId, themeId, 0, 1, orderByComparator);
+		List<StyleBookEntryVersion> list = findByG_D_T(
+			groupId, defaultStyleBookEntry, themeId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -8608,33 +8634,37 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Returns the last style book entry version in the ordered set where groupId = &#63; and themeId = &#63;.
+	 * Returns the last style book entry version in the ordered set where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching style book entry version
 	 * @throws NoSuchEntryVersionException if a matching style book entry version could not be found
 	 */
 	@Override
-	public StyleBookEntryVersion findByG_T_Last(
-			long groupId, String themeId,
+	public StyleBookEntryVersion findByG_D_T_Last(
+			long groupId, boolean defaultStyleBookEntry, String themeId,
 			OrderByComparator<StyleBookEntryVersion> orderByComparator)
 		throws NoSuchEntryVersionException {
 
-		StyleBookEntryVersion styleBookEntryVersion = fetchByG_T_Last(
-			groupId, themeId, orderByComparator);
+		StyleBookEntryVersion styleBookEntryVersion = fetchByG_D_T_Last(
+			groupId, defaultStyleBookEntry, themeId, orderByComparator);
 
 		if (styleBookEntryVersion != null) {
 			return styleBookEntryVersion;
 		}
 
-		StringBundler sb = new StringBundler(6);
+		StringBundler sb = new StringBundler(8);
 
 		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
 
 		sb.append("groupId=");
 		sb.append(groupId);
+
+		sb.append(", defaultStyleBookEntry=");
+		sb.append(defaultStyleBookEntry);
 
 		sb.append(", themeId=");
 		sb.append(themeId);
@@ -8645,26 +8675,28 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Returns the last style book entry version in the ordered set where groupId = &#63; and themeId = &#63;.
+	 * Returns the last style book entry version in the ordered set where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching style book entry version, or <code>null</code> if a matching style book entry version could not be found
 	 */
 	@Override
-	public StyleBookEntryVersion fetchByG_T_Last(
-		long groupId, String themeId,
+	public StyleBookEntryVersion fetchByG_D_T_Last(
+		long groupId, boolean defaultStyleBookEntry, String themeId,
 		OrderByComparator<StyleBookEntryVersion> orderByComparator) {
 
-		int count = countByG_T(groupId, themeId);
+		int count = countByG_D_T(groupId, defaultStyleBookEntry, themeId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<StyleBookEntryVersion> list = findByG_T(
-			groupId, themeId, count - 1, count, orderByComparator);
+		List<StyleBookEntryVersion> list = findByG_D_T(
+			groupId, defaultStyleBookEntry, themeId, count - 1, count,
+			orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -8674,18 +8706,20 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Returns the style book entry versions before and after the current style book entry version in the ordered set where groupId = &#63; and themeId = &#63;.
+	 * Returns the style book entry versions before and after the current style book entry version in the ordered set where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63;.
 	 *
 	 * @param styleBookEntryVersionId the primary key of the current style book entry version
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next style book entry version
 	 * @throws NoSuchEntryVersionException if a style book entry version with the primary key could not be found
 	 */
 	@Override
-	public StyleBookEntryVersion[] findByG_T_PrevAndNext(
-			long styleBookEntryVersionId, long groupId, String themeId,
+	public StyleBookEntryVersion[] findByG_D_T_PrevAndNext(
+			long styleBookEntryVersionId, long groupId,
+			boolean defaultStyleBookEntry, String themeId,
 			OrderByComparator<StyleBookEntryVersion> orderByComparator)
 		throws NoSuchEntryVersionException {
 
@@ -8701,15 +8735,15 @@ public class StyleBookEntryVersionPersistenceImpl
 
 			StyleBookEntryVersion[] array = new StyleBookEntryVersionImpl[3];
 
-			array[0] = getByG_T_PrevAndNext(
-				session, styleBookEntryVersion, groupId, themeId,
-				orderByComparator, true);
+			array[0] = getByG_D_T_PrevAndNext(
+				session, styleBookEntryVersion, groupId, defaultStyleBookEntry,
+				themeId, orderByComparator, true);
 
 			array[1] = styleBookEntryVersion;
 
-			array[2] = getByG_T_PrevAndNext(
-				session, styleBookEntryVersion, groupId, themeId,
-				orderByComparator, false);
+			array[2] = getByG_D_T_PrevAndNext(
+				session, styleBookEntryVersion, groupId, defaultStyleBookEntry,
+				themeId, orderByComparator, false);
 
 			return array;
 		}
@@ -8721,9 +8755,9 @@ public class StyleBookEntryVersionPersistenceImpl
 		}
 	}
 
-	protected StyleBookEntryVersion getByG_T_PrevAndNext(
+	protected StyleBookEntryVersion getByG_D_T_PrevAndNext(
 		Session session, StyleBookEntryVersion styleBookEntryVersion,
-		long groupId, String themeId,
+		long groupId, boolean defaultStyleBookEntry, String themeId,
 		OrderByComparator<StyleBookEntryVersion> orderByComparator,
 		boolean previous) {
 
@@ -8731,26 +8765,28 @@ public class StyleBookEntryVersionPersistenceImpl
 
 		if (orderByComparator != null) {
 			sb = new StringBundler(
-				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
-			sb = new StringBundler(4);
+			sb = new StringBundler(5);
 		}
 
 		sb.append(_SQL_SELECT_STYLEBOOKENTRYVERSION_WHERE);
 
-		sb.append(_FINDER_COLUMN_G_T_GROUPID_2);
+		sb.append(_FINDER_COLUMN_G_D_T_GROUPID_2);
+
+		sb.append(_FINDER_COLUMN_G_D_T_DEFAULTSTYLEBOOKENTRY_2);
 
 		boolean bindThemeId = false;
 
 		if (themeId.isEmpty()) {
-			sb.append(_FINDER_COLUMN_G_T_THEMEID_3);
+			sb.append(_FINDER_COLUMN_G_D_T_THEMEID_3);
 		}
 		else {
 			bindThemeId = true;
 
-			sb.append(_FINDER_COLUMN_G_T_THEMEID_2);
+			sb.append(_FINDER_COLUMN_G_D_T_THEMEID_2);
 		}
 
 		if (orderByComparator != null) {
@@ -8824,6 +8860,8 @@ public class StyleBookEntryVersionPersistenceImpl
 
 		queryPos.add(groupId);
 
+		queryPos.add(defaultStyleBookEntry);
+
 		if (bindThemeId) {
 			queryPos.add(themeId);
 		}
@@ -8848,60 +8886,70 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Removes all the style book entry versions where groupId = &#63; and themeId = &#63; from the database.
+	 * Removes all the style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; from the database.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 */
 	@Override
-	public void removeByG_T(long groupId, String themeId) {
+	public void removeByG_D_T(
+		long groupId, boolean defaultStyleBookEntry, String themeId) {
+
 		for (StyleBookEntryVersion styleBookEntryVersion :
-				findByG_T(
-					groupId, themeId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					null)) {
+				findByG_D_T(
+					groupId, defaultStyleBookEntry, themeId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
 
 			remove(styleBookEntryVersion);
 		}
 	}
 
 	/**
-	 * Returns the number of style book entry versions where groupId = &#63; and themeId = &#63;.
+	 * Returns the number of style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @return the number of matching style book entry versions
 	 */
 	@Override
-	public int countByG_T(long groupId, String themeId) {
+	public int countByG_D_T(
+		long groupId, boolean defaultStyleBookEntry, String themeId) {
+
 		try (SafeCloseable safeCloseable =
 				ctPersistenceHelper.setCTCollectionIdWithSafeCloseable(
 					StyleBookEntryVersion.class)) {
 
 			themeId = Objects.toString(themeId, "");
 
-			FinderPath finderPath = _finderPathCountByG_T;
+			FinderPath finderPath = _finderPathCountByG_D_T;
 
-			Object[] finderArgs = new Object[] {groupId, themeId};
+			Object[] finderArgs = new Object[] {
+				groupId, defaultStyleBookEntry, themeId
+			};
 
 			Long count = (Long)finderCache.getResult(
 				finderPath, finderArgs, this);
 
 			if (count == null) {
-				StringBundler sb = new StringBundler(3);
+				StringBundler sb = new StringBundler(4);
 
 				sb.append(_SQL_COUNT_STYLEBOOKENTRYVERSION_WHERE);
 
-				sb.append(_FINDER_COLUMN_G_T_GROUPID_2);
+				sb.append(_FINDER_COLUMN_G_D_T_GROUPID_2);
+
+				sb.append(_FINDER_COLUMN_G_D_T_DEFAULTSTYLEBOOKENTRY_2);
 
 				boolean bindThemeId = false;
 
 				if (themeId.isEmpty()) {
-					sb.append(_FINDER_COLUMN_G_T_THEMEID_3);
+					sb.append(_FINDER_COLUMN_G_D_T_THEMEID_3);
 				}
 				else {
 					bindThemeId = true;
 
-					sb.append(_FINDER_COLUMN_G_T_THEMEID_2);
+					sb.append(_FINDER_COLUMN_G_D_T_THEMEID_2);
 				}
 
 				String sql = sb.toString();
@@ -8916,6 +8964,8 @@ public class StyleBookEntryVersionPersistenceImpl
 					QueryPos queryPos = QueryPos.getInstance(query);
 
 					queryPos.add(groupId);
+
+					queryPos.add(defaultStyleBookEntry);
 
 					if (bindThemeId) {
 						queryPos.add(themeId);
@@ -8937,44 +8987,50 @@ public class StyleBookEntryVersionPersistenceImpl
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_T_GROUPID_2 =
+	private static final String _FINDER_COLUMN_G_D_T_GROUPID_2 =
 		"styleBookEntryVersion.groupId = ? AND ";
 
-	private static final String _FINDER_COLUMN_G_T_THEMEID_2 =
+	private static final String _FINDER_COLUMN_G_D_T_DEFAULTSTYLEBOOKENTRY_2 =
+		"styleBookEntryVersion.defaultStyleBookEntry = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_D_T_THEMEID_2 =
 		"styleBookEntryVersion.themeId = ?";
 
-	private static final String _FINDER_COLUMN_G_T_THEMEID_3 =
+	private static final String _FINDER_COLUMN_G_D_T_THEMEID_3 =
 		"(styleBookEntryVersion.themeId IS NULL OR styleBookEntryVersion.themeId = '')";
 
-	private FinderPath _finderPathWithPaginationFindByG_T_Version;
-	private FinderPath _finderPathWithoutPaginationFindByG_T_Version;
-	private FinderPath _finderPathCountByG_T_Version;
+	private FinderPath _finderPathWithPaginationFindByG_D_T_Version;
+	private FinderPath _finderPathWithoutPaginationFindByG_D_T_Version;
+	private FinderPath _finderPathCountByG_D_T_Version;
 
 	/**
-	 * Returns all the style book entry versions where groupId = &#63; and themeId = &#63; and version = &#63;.
+	 * Returns all the style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; and version = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param version the version
 	 * @return the matching style book entry versions
 	 */
 	@Override
-	public List<StyleBookEntryVersion> findByG_T_Version(
-		long groupId, String themeId, int version) {
+	public List<StyleBookEntryVersion> findByG_D_T_Version(
+		long groupId, boolean defaultStyleBookEntry, String themeId,
+		int version) {
 
-		return findByG_T_Version(
-			groupId, themeId, version, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByG_D_T_Version(
+			groupId, defaultStyleBookEntry, themeId, version, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the style book entry versions where groupId = &#63; and themeId = &#63; and version = &#63;.
+	 * Returns a range of all the style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; and version = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>StyleBookEntryVersionModelImpl</code>.
 	 * </p>
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param version the version
 	 * @param start the lower bound of the range of style book entry versions
@@ -8982,20 +9038,23 @@ public class StyleBookEntryVersionPersistenceImpl
 	 * @return the range of matching style book entry versions
 	 */
 	@Override
-	public List<StyleBookEntryVersion> findByG_T_Version(
-		long groupId, String themeId, int version, int start, int end) {
+	public List<StyleBookEntryVersion> findByG_D_T_Version(
+		long groupId, boolean defaultStyleBookEntry, String themeId,
+		int version, int start, int end) {
 
-		return findByG_T_Version(groupId, themeId, version, start, end, null);
+		return findByG_D_T_Version(
+			groupId, defaultStyleBookEntry, themeId, version, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the style book entry versions where groupId = &#63; and themeId = &#63; and version = &#63;.
+	 * Returns an ordered range of all the style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; and version = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>StyleBookEntryVersionModelImpl</code>.
 	 * </p>
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param version the version
 	 * @param start the lower bound of the range of style book entry versions
@@ -9004,22 +9063,25 @@ public class StyleBookEntryVersionPersistenceImpl
 	 * @return the ordered range of matching style book entry versions
 	 */
 	@Override
-	public List<StyleBookEntryVersion> findByG_T_Version(
-		long groupId, String themeId, int version, int start, int end,
+	public List<StyleBookEntryVersion> findByG_D_T_Version(
+		long groupId, boolean defaultStyleBookEntry, String themeId,
+		int version, int start, int end,
 		OrderByComparator<StyleBookEntryVersion> orderByComparator) {
 
-		return findByG_T_Version(
-			groupId, themeId, version, start, end, orderByComparator, true);
+		return findByG_D_T_Version(
+			groupId, defaultStyleBookEntry, themeId, version, start, end,
+			orderByComparator, true);
 	}
 
 	/**
-	 * Returns an ordered range of all the style book entry versions where groupId = &#63; and themeId = &#63; and version = &#63;.
+	 * Returns an ordered range of all the style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; and version = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>StyleBookEntryVersionModelImpl</code>.
 	 * </p>
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param version the version
 	 * @param start the lower bound of the range of style book entry versions
@@ -9029,8 +9091,9 @@ public class StyleBookEntryVersionPersistenceImpl
 	 * @return the ordered range of matching style book entry versions
 	 */
 	@Override
-	public List<StyleBookEntryVersion> findByG_T_Version(
-		long groupId, String themeId, int version, int start, int end,
+	public List<StyleBookEntryVersion> findByG_D_T_Version(
+		long groupId, boolean defaultStyleBookEntry, String themeId,
+		int version, int start, int end,
 		OrderByComparator<StyleBookEntryVersion> orderByComparator,
 		boolean useFinderCache) {
 
@@ -9047,14 +9110,18 @@ public class StyleBookEntryVersionPersistenceImpl
 				(orderByComparator == null)) {
 
 				if (useFinderCache) {
-					finderPath = _finderPathWithoutPaginationFindByG_T_Version;
-					finderArgs = new Object[] {groupId, themeId, version};
+					finderPath =
+						_finderPathWithoutPaginationFindByG_D_T_Version;
+					finderArgs = new Object[] {
+						groupId, defaultStyleBookEntry, themeId, version
+					};
 				}
 			}
 			else if (useFinderCache) {
-				finderPath = _finderPathWithPaginationFindByG_T_Version;
+				finderPath = _finderPathWithPaginationFindByG_D_T_Version;
 				finderArgs = new Object[] {
-					groupId, themeId, version, start, end, orderByComparator
+					groupId, defaultStyleBookEntry, themeId, version, start,
+					end, orderByComparator
 				};
 			}
 
@@ -9067,6 +9134,9 @@ public class StyleBookEntryVersionPersistenceImpl
 				if ((list != null) && !list.isEmpty()) {
 					for (StyleBookEntryVersion styleBookEntryVersion : list) {
 						if ((groupId != styleBookEntryVersion.getGroupId()) ||
+							(defaultStyleBookEntry !=
+								styleBookEntryVersion.
+									isDefaultStyleBookEntry()) ||
 							!themeId.equals(
 								styleBookEntryVersion.getThemeId()) ||
 							(version != styleBookEntryVersion.getVersion())) {
@@ -9084,28 +9154,30 @@ public class StyleBookEntryVersionPersistenceImpl
 
 				if (orderByComparator != null) {
 					sb = new StringBundler(
-						5 + (orderByComparator.getOrderByFields().length * 2));
+						6 + (orderByComparator.getOrderByFields().length * 2));
 				}
 				else {
-					sb = new StringBundler(5);
+					sb = new StringBundler(6);
 				}
 
 				sb.append(_SQL_SELECT_STYLEBOOKENTRYVERSION_WHERE);
 
-				sb.append(_FINDER_COLUMN_G_T_VERSION_GROUPID_2);
+				sb.append(_FINDER_COLUMN_G_D_T_VERSION_GROUPID_2);
+
+				sb.append(_FINDER_COLUMN_G_D_T_VERSION_DEFAULTSTYLEBOOKENTRY_2);
 
 				boolean bindThemeId = false;
 
 				if (themeId.isEmpty()) {
-					sb.append(_FINDER_COLUMN_G_T_VERSION_THEMEID_3);
+					sb.append(_FINDER_COLUMN_G_D_T_VERSION_THEMEID_3);
 				}
 				else {
 					bindThemeId = true;
 
-					sb.append(_FINDER_COLUMN_G_T_VERSION_THEMEID_2);
+					sb.append(_FINDER_COLUMN_G_D_T_VERSION_THEMEID_2);
 				}
 
-				sb.append(_FINDER_COLUMN_G_T_VERSION_VERSION_2);
+				sb.append(_FINDER_COLUMN_G_D_T_VERSION_VERSION_2);
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(
@@ -9127,6 +9199,8 @@ public class StyleBookEntryVersionPersistenceImpl
 					QueryPos queryPos = QueryPos.getInstance(query);
 
 					queryPos.add(groupId);
+
+					queryPos.add(defaultStyleBookEntry);
 
 					if (bindThemeId) {
 						queryPos.add(themeId);
@@ -9156,9 +9230,10 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Returns the first style book entry version in the ordered set where groupId = &#63; and themeId = &#63; and version = &#63;.
+	 * Returns the first style book entry version in the ordered set where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; and version = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param version the version
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -9166,24 +9241,30 @@ public class StyleBookEntryVersionPersistenceImpl
 	 * @throws NoSuchEntryVersionException if a matching style book entry version could not be found
 	 */
 	@Override
-	public StyleBookEntryVersion findByG_T_Version_First(
-			long groupId, String themeId, int version,
+	public StyleBookEntryVersion findByG_D_T_Version_First(
+			long groupId, boolean defaultStyleBookEntry, String themeId,
+			int version,
 			OrderByComparator<StyleBookEntryVersion> orderByComparator)
 		throws NoSuchEntryVersionException {
 
-		StyleBookEntryVersion styleBookEntryVersion = fetchByG_T_Version_First(
-			groupId, themeId, version, orderByComparator);
+		StyleBookEntryVersion styleBookEntryVersion =
+			fetchByG_D_T_Version_First(
+				groupId, defaultStyleBookEntry, themeId, version,
+				orderByComparator);
 
 		if (styleBookEntryVersion != null) {
 			return styleBookEntryVersion;
 		}
 
-		StringBundler sb = new StringBundler(8);
+		StringBundler sb = new StringBundler(10);
 
 		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
 
 		sb.append("groupId=");
 		sb.append(groupId);
+
+		sb.append(", defaultStyleBookEntry=");
+		sb.append(defaultStyleBookEntry);
 
 		sb.append(", themeId=");
 		sb.append(themeId);
@@ -9197,21 +9278,24 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Returns the first style book entry version in the ordered set where groupId = &#63; and themeId = &#63; and version = &#63;.
+	 * Returns the first style book entry version in the ordered set where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; and version = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param version the version
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching style book entry version, or <code>null</code> if a matching style book entry version could not be found
 	 */
 	@Override
-	public StyleBookEntryVersion fetchByG_T_Version_First(
-		long groupId, String themeId, int version,
+	public StyleBookEntryVersion fetchByG_D_T_Version_First(
+		long groupId, boolean defaultStyleBookEntry, String themeId,
+		int version,
 		OrderByComparator<StyleBookEntryVersion> orderByComparator) {
 
-		List<StyleBookEntryVersion> list = findByG_T_Version(
-			groupId, themeId, version, 0, 1, orderByComparator);
+		List<StyleBookEntryVersion> list = findByG_D_T_Version(
+			groupId, defaultStyleBookEntry, themeId, version, 0, 1,
+			orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -9221,9 +9305,10 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Returns the last style book entry version in the ordered set where groupId = &#63; and themeId = &#63; and version = &#63;.
+	 * Returns the last style book entry version in the ordered set where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; and version = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param version the version
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -9231,24 +9316,29 @@ public class StyleBookEntryVersionPersistenceImpl
 	 * @throws NoSuchEntryVersionException if a matching style book entry version could not be found
 	 */
 	@Override
-	public StyleBookEntryVersion findByG_T_Version_Last(
-			long groupId, String themeId, int version,
+	public StyleBookEntryVersion findByG_D_T_Version_Last(
+			long groupId, boolean defaultStyleBookEntry, String themeId,
+			int version,
 			OrderByComparator<StyleBookEntryVersion> orderByComparator)
 		throws NoSuchEntryVersionException {
 
-		StyleBookEntryVersion styleBookEntryVersion = fetchByG_T_Version_Last(
-			groupId, themeId, version, orderByComparator);
+		StyleBookEntryVersion styleBookEntryVersion = fetchByG_D_T_Version_Last(
+			groupId, defaultStyleBookEntry, themeId, version,
+			orderByComparator);
 
 		if (styleBookEntryVersion != null) {
 			return styleBookEntryVersion;
 		}
 
-		StringBundler sb = new StringBundler(8);
+		StringBundler sb = new StringBundler(10);
 
 		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
 
 		sb.append("groupId=");
 		sb.append(groupId);
+
+		sb.append(", defaultStyleBookEntry=");
+		sb.append(defaultStyleBookEntry);
 
 		sb.append(", themeId=");
 		sb.append(themeId);
@@ -9262,27 +9352,31 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Returns the last style book entry version in the ordered set where groupId = &#63; and themeId = &#63; and version = &#63;.
+	 * Returns the last style book entry version in the ordered set where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; and version = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param version the version
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching style book entry version, or <code>null</code> if a matching style book entry version could not be found
 	 */
 	@Override
-	public StyleBookEntryVersion fetchByG_T_Version_Last(
-		long groupId, String themeId, int version,
+	public StyleBookEntryVersion fetchByG_D_T_Version_Last(
+		long groupId, boolean defaultStyleBookEntry, String themeId,
+		int version,
 		OrderByComparator<StyleBookEntryVersion> orderByComparator) {
 
-		int count = countByG_T_Version(groupId, themeId, version);
+		int count = countByG_D_T_Version(
+			groupId, defaultStyleBookEntry, themeId, version);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<StyleBookEntryVersion> list = findByG_T_Version(
-			groupId, themeId, version, count - 1, count, orderByComparator);
+		List<StyleBookEntryVersion> list = findByG_D_T_Version(
+			groupId, defaultStyleBookEntry, themeId, version, count - 1, count,
+			orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -9292,10 +9386,11 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Returns the style book entry versions before and after the current style book entry version in the ordered set where groupId = &#63; and themeId = &#63; and version = &#63;.
+	 * Returns the style book entry versions before and after the current style book entry version in the ordered set where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; and version = &#63;.
 	 *
 	 * @param styleBookEntryVersionId the primary key of the current style book entry version
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param version the version
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -9303,9 +9398,9 @@ public class StyleBookEntryVersionPersistenceImpl
 	 * @throws NoSuchEntryVersionException if a style book entry version with the primary key could not be found
 	 */
 	@Override
-	public StyleBookEntryVersion[] findByG_T_Version_PrevAndNext(
-			long styleBookEntryVersionId, long groupId, String themeId,
-			int version,
+	public StyleBookEntryVersion[] findByG_D_T_Version_PrevAndNext(
+			long styleBookEntryVersionId, long groupId,
+			boolean defaultStyleBookEntry, String themeId, int version,
 			OrderByComparator<StyleBookEntryVersion> orderByComparator)
 		throws NoSuchEntryVersionException {
 
@@ -9321,15 +9416,15 @@ public class StyleBookEntryVersionPersistenceImpl
 
 			StyleBookEntryVersion[] array = new StyleBookEntryVersionImpl[3];
 
-			array[0] = getByG_T_Version_PrevAndNext(
-				session, styleBookEntryVersion, groupId, themeId, version,
-				orderByComparator, true);
+			array[0] = getByG_D_T_Version_PrevAndNext(
+				session, styleBookEntryVersion, groupId, defaultStyleBookEntry,
+				themeId, version, orderByComparator, true);
 
 			array[1] = styleBookEntryVersion;
 
-			array[2] = getByG_T_Version_PrevAndNext(
-				session, styleBookEntryVersion, groupId, themeId, version,
-				orderByComparator, false);
+			array[2] = getByG_D_T_Version_PrevAndNext(
+				session, styleBookEntryVersion, groupId, defaultStyleBookEntry,
+				themeId, version, orderByComparator, false);
 
 			return array;
 		}
@@ -9341,39 +9436,41 @@ public class StyleBookEntryVersionPersistenceImpl
 		}
 	}
 
-	protected StyleBookEntryVersion getByG_T_Version_PrevAndNext(
+	protected StyleBookEntryVersion getByG_D_T_Version_PrevAndNext(
 		Session session, StyleBookEntryVersion styleBookEntryVersion,
-		long groupId, String themeId, int version,
-		OrderByComparator<StyleBookEntryVersion> orderByComparator,
+		long groupId, boolean defaultStyleBookEntry, String themeId,
+		int version, OrderByComparator<StyleBookEntryVersion> orderByComparator,
 		boolean previous) {
 
 		StringBundler sb = null;
 
 		if (orderByComparator != null) {
 			sb = new StringBundler(
-				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
-			sb = new StringBundler(5);
+			sb = new StringBundler(6);
 		}
 
 		sb.append(_SQL_SELECT_STYLEBOOKENTRYVERSION_WHERE);
 
-		sb.append(_FINDER_COLUMN_G_T_VERSION_GROUPID_2);
+		sb.append(_FINDER_COLUMN_G_D_T_VERSION_GROUPID_2);
+
+		sb.append(_FINDER_COLUMN_G_D_T_VERSION_DEFAULTSTYLEBOOKENTRY_2);
 
 		boolean bindThemeId = false;
 
 		if (themeId.isEmpty()) {
-			sb.append(_FINDER_COLUMN_G_T_VERSION_THEMEID_3);
+			sb.append(_FINDER_COLUMN_G_D_T_VERSION_THEMEID_3);
 		}
 		else {
 			bindThemeId = true;
 
-			sb.append(_FINDER_COLUMN_G_T_VERSION_THEMEID_2);
+			sb.append(_FINDER_COLUMN_G_D_T_VERSION_THEMEID_2);
 		}
 
-		sb.append(_FINDER_COLUMN_G_T_VERSION_VERSION_2);
+		sb.append(_FINDER_COLUMN_G_D_T_VERSION_VERSION_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields =
@@ -9445,6 +9542,8 @@ public class StyleBookEntryVersionPersistenceImpl
 		QueryPos queryPos = QueryPos.getInstance(query);
 
 		queryPos.add(groupId);
+
+		queryPos.add(defaultStyleBookEntry);
 
 		if (bindThemeId) {
 			queryPos.add(themeId);
@@ -9472,65 +9571,77 @@ public class StyleBookEntryVersionPersistenceImpl
 	}
 
 	/**
-	 * Removes all the style book entry versions where groupId = &#63; and themeId = &#63; and version = &#63; from the database.
+	 * Removes all the style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; and version = &#63; from the database.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param version the version
 	 */
 	@Override
-	public void removeByG_T_Version(long groupId, String themeId, int version) {
+	public void removeByG_D_T_Version(
+		long groupId, boolean defaultStyleBookEntry, String themeId,
+		int version) {
+
 		for (StyleBookEntryVersion styleBookEntryVersion :
-				findByG_T_Version(
-					groupId, themeId, version, QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS, null)) {
+				findByG_D_T_Version(
+					groupId, defaultStyleBookEntry, themeId, version,
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 
 			remove(styleBookEntryVersion);
 		}
 	}
 
 	/**
-	 * Returns the number of style book entry versions where groupId = &#63; and themeId = &#63; and version = &#63;.
+	 * Returns the number of style book entry versions where groupId = &#63; and defaultStyleBookEntry = &#63; and themeId = &#63; and version = &#63;.
 	 *
 	 * @param groupId the group ID
+	 * @param defaultStyleBookEntry the default style book entry
 	 * @param themeId the theme ID
 	 * @param version the version
 	 * @return the number of matching style book entry versions
 	 */
 	@Override
-	public int countByG_T_Version(long groupId, String themeId, int version) {
+	public int countByG_D_T_Version(
+		long groupId, boolean defaultStyleBookEntry, String themeId,
+		int version) {
+
 		try (SafeCloseable safeCloseable =
 				ctPersistenceHelper.setCTCollectionIdWithSafeCloseable(
 					StyleBookEntryVersion.class)) {
 
 			themeId = Objects.toString(themeId, "");
 
-			FinderPath finderPath = _finderPathCountByG_T_Version;
+			FinderPath finderPath = _finderPathCountByG_D_T_Version;
 
-			Object[] finderArgs = new Object[] {groupId, themeId, version};
+			Object[] finderArgs = new Object[] {
+				groupId, defaultStyleBookEntry, themeId, version
+			};
 
 			Long count = (Long)finderCache.getResult(
 				finderPath, finderArgs, this);
 
 			if (count == null) {
-				StringBundler sb = new StringBundler(4);
+				StringBundler sb = new StringBundler(5);
 
 				sb.append(_SQL_COUNT_STYLEBOOKENTRYVERSION_WHERE);
 
-				sb.append(_FINDER_COLUMN_G_T_VERSION_GROUPID_2);
+				sb.append(_FINDER_COLUMN_G_D_T_VERSION_GROUPID_2);
+
+				sb.append(_FINDER_COLUMN_G_D_T_VERSION_DEFAULTSTYLEBOOKENTRY_2);
 
 				boolean bindThemeId = false;
 
 				if (themeId.isEmpty()) {
-					sb.append(_FINDER_COLUMN_G_T_VERSION_THEMEID_3);
+					sb.append(_FINDER_COLUMN_G_D_T_VERSION_THEMEID_3);
 				}
 				else {
 					bindThemeId = true;
 
-					sb.append(_FINDER_COLUMN_G_T_VERSION_THEMEID_2);
+					sb.append(_FINDER_COLUMN_G_D_T_VERSION_THEMEID_2);
 				}
 
-				sb.append(_FINDER_COLUMN_G_T_VERSION_VERSION_2);
+				sb.append(_FINDER_COLUMN_G_D_T_VERSION_VERSION_2);
 
 				String sql = sb.toString();
 
@@ -9544,6 +9655,8 @@ public class StyleBookEntryVersionPersistenceImpl
 					QueryPos queryPos = QueryPos.getInstance(query);
 
 					queryPos.add(groupId);
+
+					queryPos.add(defaultStyleBookEntry);
 
 					if (bindThemeId) {
 						queryPos.add(themeId);
@@ -9567,16 +9680,20 @@ public class StyleBookEntryVersionPersistenceImpl
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_T_VERSION_GROUPID_2 =
+	private static final String _FINDER_COLUMN_G_D_T_VERSION_GROUPID_2 =
 		"styleBookEntryVersion.groupId = ? AND ";
 
-	private static final String _FINDER_COLUMN_G_T_VERSION_THEMEID_2 =
+	private static final String
+		_FINDER_COLUMN_G_D_T_VERSION_DEFAULTSTYLEBOOKENTRY_2 =
+			"styleBookEntryVersion.defaultStyleBookEntry = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_D_T_VERSION_THEMEID_2 =
 		"styleBookEntryVersion.themeId = ? AND ";
 
-	private static final String _FINDER_COLUMN_G_T_VERSION_THEMEID_3 =
+	private static final String _FINDER_COLUMN_G_D_T_VERSION_THEMEID_3 =
 		"(styleBookEntryVersion.themeId IS NULL OR styleBookEntryVersion.themeId = '') AND ";
 
-	private static final String _FINDER_COLUMN_G_T_VERSION_VERSION_2 =
+	private static final String _FINDER_COLUMN_G_D_T_VERSION_VERSION_2 =
 		"styleBookEntryVersion.version = ?";
 
 	public StyleBookEntryVersionPersistenceImpl() {
@@ -10835,49 +10952,66 @@ public class StyleBookEntryVersionPersistenceImpl
 			},
 			new String[] {"groupId", "styleBookEntryKey", "version"}, true);
 
-		_finderPathWithPaginationFindByG_T = new FinderPath(
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_T",
+		_finderPathWithPaginationFindByG_D_T = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_D_T",
 			new String[] {
-				Long.class.getName(), String.class.getName(),
+				Long.class.getName(), Boolean.class.getName(),
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			},
+			new String[] {"groupId", "defaultStyleBookEntry", "themeId"}, true);
+
+		_finderPathWithoutPaginationFindByG_D_T = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_D_T",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				String.class.getName()
+			},
+			new String[] {"groupId", "defaultStyleBookEntry", "themeId"}, true);
+
+		_finderPathCountByG_D_T = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_D_T",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				String.class.getName()
+			},
+			new String[] {"groupId", "defaultStyleBookEntry", "themeId"},
+			false);
+
+		_finderPathWithPaginationFindByG_D_T_Version = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_D_T_Version",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				String.class.getName(), Integer.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			},
-			new String[] {"groupId", "themeId"}, true);
-
-		_finderPathWithoutPaginationFindByG_T = new FinderPath(
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_T",
-			new String[] {Long.class.getName(), String.class.getName()},
-			new String[] {"groupId", "themeId"}, true);
-
-		_finderPathCountByG_T = new FinderPath(
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_T",
-			new String[] {Long.class.getName(), String.class.getName()},
-			new String[] {"groupId", "themeId"}, false);
-
-		_finderPathWithPaginationFindByG_T_Version = new FinderPath(
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_T_Version",
 			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Integer.class.getName(), Integer.class.getName(),
-				Integer.class.getName(), OrderByComparator.class.getName()
+				"groupId", "defaultStyleBookEntry", "themeId", "version"
 			},
-			new String[] {"groupId", "themeId", "version"}, true);
+			true);
 
-		_finderPathWithoutPaginationFindByG_T_Version = new FinderPath(
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_T_Version",
+		_finderPathWithoutPaginationFindByG_D_T_Version = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_D_T_Version",
 			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Integer.class.getName()
+				Long.class.getName(), Boolean.class.getName(),
+				String.class.getName(), Integer.class.getName()
 			},
-			new String[] {"groupId", "themeId", "version"}, true);
+			new String[] {
+				"groupId", "defaultStyleBookEntry", "themeId", "version"
+			},
+			true);
 
-		_finderPathCountByG_T_Version = new FinderPath(
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_T_Version",
+		_finderPathCountByG_D_T_Version = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_D_T_Version",
 			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Integer.class.getName()
+				Long.class.getName(), Boolean.class.getName(),
+				String.class.getName(), Integer.class.getName()
 			},
-			new String[] {"groupId", "themeId", "version"}, false);
+			new String[] {
+				"groupId", "defaultStyleBookEntry", "themeId", "version"
+			},
+			false);
 
 		StyleBookEntryVersionUtil.setPersistence(this);
 	}

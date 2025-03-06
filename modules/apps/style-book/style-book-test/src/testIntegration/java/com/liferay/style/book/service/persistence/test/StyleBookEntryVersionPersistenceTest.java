@@ -367,22 +367,27 @@ public class StyleBookEntryVersionPersistenceTest {
 	}
 
 	@Test
-	public void testCountByG_T() throws Exception {
-		_persistence.countByG_T(RandomTestUtil.nextLong(), "");
+	public void testCountByG_D_T() throws Exception {
+		_persistence.countByG_D_T(
+			RandomTestUtil.nextLong(), RandomTestUtil.randomBoolean(), "");
 
-		_persistence.countByG_T(0L, "null");
+		_persistence.countByG_D_T(0L, RandomTestUtil.randomBoolean(), "null");
 
-		_persistence.countByG_T(0L, (String)null);
+		_persistence.countByG_D_T(
+			0L, RandomTestUtil.randomBoolean(), (String)null);
 	}
 
 	@Test
-	public void testCountByG_T_Version() throws Exception {
-		_persistence.countByG_T_Version(
-			RandomTestUtil.nextLong(), "", RandomTestUtil.nextInt());
+	public void testCountByG_D_T_Version() throws Exception {
+		_persistence.countByG_D_T_Version(
+			RandomTestUtil.nextLong(), RandomTestUtil.randomBoolean(), "",
+			RandomTestUtil.nextInt());
 
-		_persistence.countByG_T_Version(0L, "null", 0);
+		_persistence.countByG_D_T_Version(
+			0L, RandomTestUtil.randomBoolean(), "null", 0);
 
-		_persistence.countByG_T_Version(0L, (String)null, 0);
+		_persistence.countByG_D_T_Version(
+			0L, RandomTestUtil.randomBoolean(), (String)null, 0);
 	}
 
 	@Test

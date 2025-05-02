@@ -190,7 +190,7 @@ test(
 			await styleBooksPage.waitForAutoSave();
 		});
 
-		await test.step('Preview the effect in page preivew iframe', async () => {
+		await test.step('Preview the effect in page preview iframe', async () => {
 			const previewIframe = page.frameLocator(
 				'iframe.style-book-editor__page-preview-frame'
 			);
@@ -665,6 +665,100 @@ test.describe('Cannot preview style book', () => {
 		});
 	});
 });
+
+test(
+	'Preview the effect on page in style book editor in staging site',
+	{tag: '@LPS-116078'},
+	async ({
+    	apiHelpers,
+		page,
+		pageEditorPage,
+		pagesAdminPage,
+		productMenuPage,
+		site,
+		styleBooksPage,
+	}) => {
+		await test.step(
+			"Activate local live staging", async () => {
+			await apiHelpers.jsonWebServicesStaging.enableLocalStaging({
+				groupId: site.id,
+			});
+		});
+
+		await test.step('Add a style book', async () => {
+			await styleBooksPage.goto(site.friendlyUrlPath);
+
+			await styleBooksPage.create(getRandomString());
+		});
+
+		await test.step(
+			'Edit Background Color in Button Primary section', async () => {
+			await styleBooksPage.selectTokenCategory('Buttons');
+
+			await styleBooksPage.updateTokenInputColor(
+				'Background Color',
+				'#FF0000',
+				'Button Primary'
+			);
+
+			await styleBooksPage.waitForAutoSave();
+		});
+
+		await test.step('Select Typography in sidebar', async () => {
+			await styleBooksPage.selectTokenCategory('Typography');
+		});
+
+		await test.step(
+		'Edit Heading 1 Font Size in Headings section', async () => {
+			await styleBooksPage.updateTokenInput(
+				'Heading 1 Font Size',
+				'2',
+				'Headings'
+			);
+
+			await styleBooksPage.waitForAutoSave();
+		});
+
+		await test.step('Add a content page', async () => {
+			await styleBooksPage.goto(site.friendlyUrlPath);
+
+			await productMenuPage.goToPages();
+
+			await pagesAdminPage.createNewPage({
+				draft: true,
+				name: 'Test Page Name',
+				template: 'Blank',
+			});
+		});
+
+		await test.step('Add a heading component and publish the changes', async () => {
+			await pageEditorPage.addFragment('Basic Components', 'Heading');
+
+			await pageEditorPage.publishPage();
+		});
+
+		await test.step('Preview the effect in page preview iframe', async () => {
+			const previewIframe = page.frameLocator(
+				'iframe.style-book-editor__page-preview-frame'
+			);
+
+			await expect(
+				previewIframe.locator(
+					'.lfr-layout-structure-item-basic-component-button .btn-primary'
+				)
+			).toHaveCSS('background-color', 'rgb(255, 0, 0)');
+
+			await expect(
+				previewIframe
+					.locator(
+						'.lfr-layout-structure-item-basic-component-heading'
+					)
+					.getByText('Heading Example')
+			).toHaveCSS('font-size', '32px');
+
+			await styleBooksPage.publish();
+		});
+	});
 
 const themeScopedTest = mergeTests(
 	featureFlagsTest({

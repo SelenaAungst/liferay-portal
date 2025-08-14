@@ -110,6 +110,8 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 
 		creationMenu.setItemsIconAlignment("left");
 
+		creationMenu.setItemSelector(true);
+
 		Set<String> allowedCreationMenuUIItemKeys =
 			_getAllowedCreationMenuUIItemKeys();
 

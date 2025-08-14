@@ -119,6 +119,10 @@ public class CreationMenu extends HashMap<String, Object> {
 		put("helpText", helpText);
 	}
 
+	public void setItemSelector(Boolean itemSelector) {
+		put("itemSelector", itemSelector);
+	}
+
 	public void setItemsIconAlignment(String itemsIconAlignment) {
 		put("itemsIconAlignment", itemsIconAlignment);
 	}

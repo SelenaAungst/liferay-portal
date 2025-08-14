@@ -12,6 +12,7 @@ import getDataAttributes from '../get_data_attributes';
 import LinkOrButton from './LinkOrButton';
 
 import './CreationMenu.scss';
+import ClayIcon from "@clayui/icon";
 
 const Item = ({item, onClick}) => {
 	return (
@@ -84,7 +85,8 @@ const ItemList = ({
 };
 
 const CreationMenu = ({
-	maxPrimaryItems,
+  	itemSelector,
+  	maxPrimaryItems,
 	maxSecondaryItems,
 	maxTotalItems = 15,
 	onCreateButtonClick,
@@ -178,9 +180,11 @@ const CreationMenu = ({
 							title={getPlusIconLabel()}
 							wideViewportTitleVisible={false}
 						>
-							<span className="d-md-block d-none pl-3 pr-3">
+							<span className="d-md-block d-none pl-2 pr-2">
 								{getPlusIconLabel()}
 							</span>
+
+							{itemSelector ? <ClayIcon symbol="shortcut"/> : ""}
 						</LinkOrButton>
 					}
 				>

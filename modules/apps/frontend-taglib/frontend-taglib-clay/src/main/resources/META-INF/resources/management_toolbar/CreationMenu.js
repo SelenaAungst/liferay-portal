@@ -13,6 +13,10 @@ import LinkOrButton from './LinkOrButton';
 
 import './CreationMenu.scss';
 import ClayIcon from "@clayui/icon";
+import {ClayButtonWithIcon} from "@clayui/button";
+
+import {openSelectionModal} from 'frontend-js-components-web';
+
 
 const Item = ({item, onClick}) => {
 	return (
@@ -164,103 +168,131 @@ const CreationMenu = ({
 		getVisibleItemsCount()
 	);
 
+	const selectNewItemButton = () => {
+		openSelectionModal({
+			onSelect: (selectedItem) =>
+				changeDDMTemplate(JSON.parse(selectedItem.value)),
+			selectEventName: 'selectDDMTemplate',
+			title: Liferay.Language.get('item-selector'),
+			url: selectDDMTemplateURL,
+		});
+	};
+
 	return (
 		<>
-			{totalItemsCountRef.current > 1 ? (
-				<ClayDropDown
-					active={active}
+			{itemSelector && (totalItemsCountRef.current > 1) ? (
+				<ClayButtonWithIcon
+					aria-label={Liferay.Language.get('new')}
 					className="creation-menu"
-					onActiveChange={setActive}
-					trigger={
-						<LinkOrButton
-							aria-label={getPlusIconLabel()}
-							className="nav-btn"
-							data-qa-id="creationMenuNewButton"
-							symbol="plus"
-							title={getPlusIconLabel()}
-							wideViewportTitleVisible={false}
-						>
+					displayType="link"
+					onClick={
+						openSelectionModal({
+							height: '70vh',
+							size: 'lg',
+							title: Liferay.Language.get('item-selector'),
+						})
+					}
+					size="lg"
+					symbol="shortcut"
+					type="button"
+				/>
+			) : (
+				totalItemsCountRef.current > 1 ? (
+					<ClayDropDown
+						active={active}
+						className="creation-menu"
+						onActiveChange={setActive}
+						trigger={
+							<LinkOrButton
+								aria-label={getPlusIconLabel()}
+								className="nav-btn"
+								data-qa-id="creationMenuNewButton"
+								symbol="plus"
+								title={getPlusIconLabel()}
+								wideViewportTitleVisible={false}
+							>
 							<span className="d-md-block d-none pl-2 pr-2">
 								{getPlusIconLabel()}
 							</span>
 
-							{itemSelector ? <ClayIcon symbol="shortcut"/> : ""}
-						</LinkOrButton>
-					}
-				>
-					{visibleItemsCount < totalItemsCountRef.current ? (
-						<>
-							<div className="inline-scroller">
-								<ItemList
-									onItemClick={onCreationMenuItemClick}
-									primaryItems={primaryItems}
-									secondaryItems={secondaryItems}
-									visibleItemsCount={visibleItemsCount}
-								/>
-							</div>
-
-							<div className="dropdown-caption">
-								{sub(
-									Liferay.Language.get(
-										'showing-x-of-x-elements'
-									),
-									visibleItemsCount,
-									totalItemsCountRef.current
-								)}
-							</div>
-
-							<div className="dropdown-section">
-								<LinkOrButton
-									button={{block: true}}
-									displayType="secondary"
-									href={viewMoreURL}
-									onClick={() => {
-										if (onShowMoreButtonClick) {
-											onShowMoreButtonClick();
-
-											return;
-										}
-
-										setVisibleItemsCount(
-											totalItemsCountRef.current
-										);
-									}}
-								>
-									{Liferay.Language.get('more')}
-								</LinkOrButton>
-							</div>
-						</>
-					) : (
-						<ItemList
-							onItemClick={onCreationMenuItemClick}
-							primaryItems={primaryItems}
-							secondaryItems={secondaryItems}
-							visibleItemsCount={totalItemsCountRef.current}
-						/>
-					)}
-				</ClayDropDown>
-			) : (
-				<>
-					<LinkOrButton
-						aria-label={getPlusIconLabel()}
-						button={true}
-						className="nav-btn"
-						data-qa-id="creationMenuNewButton"
-						displayType="primary"
-						href={firstItemRef.current.href}
-						onClick={(event) => {
-							onCreateButtonClick(event, {
-								item: firstItemRef.current,
-							});
-						}}
-						symbol="plus"
-						title={getPlusIconLabel()}
-						wide
-						wideViewportTitleVisible={false}
+								{itemSelector ? <ClayIcon symbol="shortcut"/> : ""}
+							</LinkOrButton>
+						}
 					>
-						{Liferay.Language.get('new')}
-					</LinkOrButton>
-				</>
+						{visibleItemsCount < totalItemsCountRef.current ? (
+							<>
+								<div className="inline-scroller">
+									<ItemList
+										onItemClick={onCreationMenuItemClick}
+										primaryItems={primaryItems}
+										secondaryItems={secondaryItems}
+										visibleItemsCount={visibleItemsCount}
+									/>
+								</div>
+
+								<div className="dropdown-caption">
+									{sub(
+										Liferay.Language.get(
+											'showing-x-of-x-elements'
+										),
+										visibleItemsCount,
+										totalItemsCountRef.current
+									)}
+								</div>
+
+								<div className="dropdown-section">
+									<LinkOrButton
+										button={{block: true}}
+										displayType="secondary"
+										href={viewMoreURL}
+										onClick={() => {
+											if (onShowMoreButtonClick) {
+												onShowMoreButtonClick();
+
+												return;
+											}
+
+											setVisibleItemsCount(
+												totalItemsCountRef.current
+											);
+										}}
+									>
+										{Liferay.Language.get('more')}
+									</LinkOrButton>
+								</div>
+							</>
+						) : (
+							<ItemList
+								onItemClick={onCreationMenuItemClick}
+								primaryItems={primaryItems}
+								secondaryItems={secondaryItems}
+								visibleItemsCount={totalItemsCountRef.current}
+							/>
+						)}
+					</ClayDropDown>
+				) : (
+					<>
+						<LinkOrButton
+							aria-label={getPlusIconLabel()}
+							button={true}
+							className="nav-btn"
+							data-qa-id="creationMenuNewButton"
+							displayType="primary"
+							href={firstItemRef.current.href}
+							onClick={(event) => {
+								onCreateButtonClick(event, {
+									item: firstItemRef.current,
+								});
+							}}
+							symbol="plus"
+							title={getPlusIconLabel()}
+							wide
+							wideViewportTitleVisible={false}
+						>
+							{Liferay.Language.get('new')}
+						</LinkOrButton>
+					</>
+				)
 			)}
 		</>
 	);

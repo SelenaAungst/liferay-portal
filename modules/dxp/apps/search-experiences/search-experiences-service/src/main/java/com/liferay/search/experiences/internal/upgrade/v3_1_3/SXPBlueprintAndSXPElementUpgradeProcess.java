@@ -201,7 +201,9 @@ public class SXPBlueprintAndSXPElementUpgradeProcess extends UpgradeProcess {
 				"helpTextLocalized"
 			);
 
-			fieldJSONObject.remove("labelLocalized");
+			if (fieldJSONObject.has("labelLocalized")) {
+				fieldJSONObject.remove("labelLocalized");
+			}
 		}
 	}
 

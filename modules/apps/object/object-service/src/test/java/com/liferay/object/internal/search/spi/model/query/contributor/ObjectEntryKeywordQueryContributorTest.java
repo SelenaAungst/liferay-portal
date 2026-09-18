@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.QueryTerm;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.TermQuery;
+import com.liferay.portal.kernel.search.TermsQuery;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -135,6 +136,55 @@ public class ObjectEntryKeywordQueryContributorTest {
 		Assert.assertEquals(
 			"nestedFieldArray.value_text", matchQuery.getField());
 		Assert.assertEquals(token, matchQuery.getValue());
+	}
+
+	@Test
+	public void testContributeWithMultipleTextObjectFields() throws Exception {
+		ObjectDefinition objectDefinition = _mockObjectDefinition();
+
+		Mockito.when(
+			objectDefinition.getDefaultLanguageId()
+		).thenReturn(
+			"en_US"
+		);
+
+		ObjectFieldBag objectFieldBag = objectDefinition.getObjectFieldBag();
+
+		ObjectField alphaObjectField = _mockObjectField(
+			ObjectFieldConstants.BUSINESS_TYPE_TEXT,
+			ObjectFieldConstants.DB_TYPE_STRING, "alpha");
+		ObjectField betaObjectField = _mockObjectField(
+			ObjectFieldConstants.BUSINESS_TYPE_TEXT,
+			ObjectFieldConstants.DB_TYPE_STRING, "beta");
+
+		Mockito.when(
+			objectFieldBag.getNestedIndexedObjectFields()
+		).thenReturn(
+			Arrays.asList(alphaObjectField, betaObjectField)
+		);
+
+		ArgumentCaptor<Query> argumentCaptor = ArgumentCaptor.forClass(
+			Query.class);
+
+		BooleanQuery booleanQuery = _mockBooleanQuery(argumentCaptor);
+
+		ObjectEntryKeywordQueryContributor objectEntryKeywordQueryContributor =
+			_createObjectEntryKeywordQueryContributor(objectDefinition);
+
+		objectEntryKeywordQueryContributor.contribute(
+			RandomTestUtil.randomString(), booleanQuery,
+			_mockKeywordQueryContributorHelper());
+
+		List<Query> queries = argumentCaptor.getAllValues();
+
+		Assert.assertEquals(1, _countNestedQueries(queries));
+
+		TermsQuery termsQuery = _getTermsQuery(queries);
+
+		Assert.assertEquals(
+			"nestedFieldArray.fieldName", termsQuery.getField());
+		Assert.assertEquals(
+			Arrays.asList("alpha", "beta"), termsQuery.getValues());
 	}
 
 	@Test
@@ -321,6 +371,45 @@ public class ObjectEntryKeywordQueryContributorTest {
 		}
 
 		return Collections.emptyList();
+	}
+
+	private TermsQuery _getTermsQuery(List<Query> queries) {
+		for (Query query : queries) {
+			if (!(query instanceof NestedQuery)) {
+				continue;
+			}
+
+			NestedQuery nestedQuery = (NestedQuery)query;
+
+			TermsQuery termsQuery = _getTermsQuery(nestedQuery.getQuery());
+
+			if (termsQuery != null) {
+				return termsQuery;
+			}
+		}
+
+		return null;
+	}
+
+	private TermsQuery _getTermsQuery(Query query) {
+		if (query instanceof TermsQuery) {
+			return (TermsQuery)query;
+		}
+
+		if (query instanceof BooleanQuery) {
+			BooleanQuery booleanQuery = (BooleanQuery)query;
+
+			for (BooleanClause<Query> booleanClause : booleanQuery.clauses()) {
+				TermsQuery termsQuery = _getTermsQuery(
+					booleanClause.getClause());
+
+				if (termsQuery != null) {
+					return termsQuery;
+				}
+			}
+		}
+
+		return null;
 	}
 
 	private BooleanQuery _mockBooleanQuery(ArgumentCaptor<Query> argumentCaptor)

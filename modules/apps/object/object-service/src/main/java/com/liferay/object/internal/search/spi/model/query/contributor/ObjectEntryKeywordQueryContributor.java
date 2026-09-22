@@ -663,18 +663,11 @@ public class ObjectEntryKeywordQueryContributor
 	}
 
 	private String _getTextObjectFieldGroupKey(ObjectField objectField) {
-		if (Objects.equals(
-				objectField.getBusinessType(),
-				ObjectFieldConstants.BUSINESS_TYPE_ASSIGNEE)) {
-
-			return ObjectFieldConstants.BUSINESS_TYPE_ASSIGNEE;
-		}
-
-		if (objectField.isLocalized()) {
-			return "localized";
-		}
-
-		return "notLocalized";
+		return StringBundler.concat(
+			objectField.getBusinessType(), StringPool.POUND,
+			objectField.getDBType(), StringPool.POUND,
+			objectField.isIndexedAsKeyword(), StringPool.POUND,
+			objectField.isLocalized());
 	}
 
 	private String _getToken(

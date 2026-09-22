@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.search.WildcardQuery;
 import com.liferay.portal.kernel.search.facet.util.RangeParserUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -380,11 +381,15 @@ public class ObjectEntryKeywordQueryContributor
 			String token)
 		throws ParseException {
 
-		ObjectField objectField = objectFields.get(0);
+		List<ObjectField> indexedObjectFields = ListUtil.filter(
+			objectFields,
+			objectField -> (objectField != null) && objectField.isIndexed());
 
-		if ((objectField == null) || !objectField.isIndexed()) {
+		if (indexedObjectFields.isEmpty()) {
 			return;
 		}
+
+		ObjectField objectField = indexedObjectFields.get(0);
 
 		token = _getToken(objectField.getName(), searchContext, token);
 
@@ -574,7 +579,7 @@ public class ObjectEntryKeywordQueryContributor
 			}
 
 			nestedBooleanQuery.add(
-				_createObjectFieldNameQuery(objectFields),
+				_createObjectFieldNameQuery(indexedObjectFields),
 				BooleanClauseOccur.MUST);
 
 			NestedQuery nestedQuery = new NestedQuery(

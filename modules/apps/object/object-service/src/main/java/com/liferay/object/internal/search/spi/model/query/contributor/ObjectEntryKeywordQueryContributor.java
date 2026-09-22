@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.search.WildcardQuery;
 import com.liferay.portal.kernel.search.facet.util.RangeParserUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -171,9 +170,9 @@ public class ObjectEntryKeywordQueryContributor
 					}
 
 					_contribute(
-						booleanQuery, defaultLocale,
-						Collections.singletonList(objectField), searchContext,
-						keywords);
+						booleanQuery, defaultLocale, objectField,
+						Collections.singletonList(objectField.getName()),
+						searchContext, keywords);
 				}
 
 				_contributeTextObjectFields(
@@ -226,8 +225,8 @@ public class ObjectEntryKeywordQueryContributor
 
 					try {
 						_contribute(
-							booleanQuery, defaultLocale,
-							Collections.singletonList(objectField),
+							booleanQuery, defaultLocale, objectField,
+							Collections.singletonList(objectField.getName()),
 							searchContext, token);
 					}
 					catch (ParseException parseException) {
@@ -377,19 +376,13 @@ public class ObjectEntryKeywordQueryContributor
 
 	private void _contribute(
 			BooleanQuery booleanQuery, Locale defaultLocale,
-			List<ObjectField> objectFields, SearchContext searchContext,
-			String token)
+			ObjectField objectField, List<String> objectFieldNames,
+			SearchContext searchContext, String token)
 		throws ParseException {
 
-		List<ObjectField> indexedObjectFields = ListUtil.filter(
-			objectFields,
-			objectField -> (objectField != null) && objectField.isIndexed());
-
-		if (indexedObjectFields.isEmpty()) {
+		if ((objectField == null) || !objectField.isIndexed()) {
 			return;
 		}
-
-		ObjectField objectField = indexedObjectFields.get(0);
 
 		token = _getToken(objectField.getName(), searchContext, token);
 
@@ -579,7 +572,7 @@ public class ObjectEntryKeywordQueryContributor
 			}
 
 			nestedBooleanQuery.add(
-				_createObjectFieldNameQuery(indexedObjectFields),
+				_createObjectFieldNameQuery(objectFieldNames),
 				BooleanClauseOccur.MUST);
 
 			NestedQuery nestedQuery = new NestedQuery(
@@ -619,8 +612,9 @@ public class ObjectEntryKeywordQueryContributor
 				textObjectFieldsMap.values()) {
 
 			_contribute(
-				booleanQuery, defaultLocale, textObjectFields, searchContext,
-				token);
+				booleanQuery, defaultLocale, textObjectFields.get(0),
+				TransformUtil.transform(textObjectFields, ObjectField::getName),
+				searchContext, token);
 		}
 	}
 
@@ -636,17 +630,13 @@ public class ObjectEntryKeywordQueryContributor
 		return matchQuery;
 	}
 
-	private Query _createObjectFieldNameQuery(List<ObjectField> objectFields) {
-		if (objectFields.size() == 1) {
-			ObjectField objectField = objectFields.get(0);
-
+	private Query _createObjectFieldNameQuery(List<String> objectFieldNames) {
+		if (objectFieldNames.size() == 1) {
 			return new TermQuery(
-				"nestedFieldArray.fieldName", objectField.getName());
+				"nestedFieldArray.fieldName", objectFieldNames.get(0));
 		}
 
-		return new TermsQuery(
-			"nestedFieldArray.fieldName",
-			TransformUtil.transform(objectFields, ObjectField::getName));
+		return new TermsQuery("nestedFieldArray.fieldName", objectFieldNames);
 	}
 
 	private String[] _getLocalizedNestedFieldNames(

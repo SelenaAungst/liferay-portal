@@ -175,18 +175,19 @@ public class RangeQueryUtilTest {
 
 		_assertRangeQueryParameters(
 			JSONUtil.put(
-				"gte", "-9223372036854775808"
-			).put(
-				"lte", "${time.current_date|date_format=timestamp}"
-			),
-			fieldJSONObject1);
-		_assertRangeQueryParameters(
-			JSONUtil.put(
 				"gte", "${time.current_date|date_format=timestamp}"
 			).put(
 				"lte", "9223372036854775807"
 			),
 			fieldJSONObject2);
+
+		_assertRangeQueryParameters(
+			JSONUtil.put(
+				"gte", "-9223372036854775808"
+			).put(
+				"lte", "${time.current_date|date_format=timestamp}"
+			),
+			fieldJSONObject1);
 	}
 
 	@Test

@@ -112,11 +112,12 @@ public class RangeQueryUtil {
 			}
 
 			_upgradeRangeQueryBound(
-				fieldJSONObject, "from", "gt", "gte",
-				fieldJSONObject.getBoolean("include_lower", true));
+				"gt", fieldJSONObject,
+				fieldJSONObject.getBoolean("include_lower", true), "gte",
+				"from");
 			_upgradeRangeQueryBound(
-				fieldJSONObject, "to", "lt", "lte",
-				fieldJSONObject.getBoolean("include_upper", true));
+				"lt", fieldJSONObject,
+				fieldJSONObject.getBoolean("include_upper", true), "lte", "to");
 
 			fieldJSONObject.remove("include_lower");
 			fieldJSONObject.remove("include_upper");
@@ -128,8 +129,8 @@ public class RangeQueryUtil {
 	}
 
 	private static void _upgradeRangeQueryBound(
-		JSONObject fieldJSONObject, String key, String exclusiveKey,
-		String inclusiveKey, boolean inclusive) {
+		String exclusiveKey, JSONObject fieldJSONObject, boolean inclusive,
+		String inclusiveKey, String key) {
 
 		if (!fieldJSONObject.has(key)) {
 			return;

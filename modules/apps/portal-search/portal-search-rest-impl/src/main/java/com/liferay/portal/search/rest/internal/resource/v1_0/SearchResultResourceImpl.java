@@ -362,6 +362,9 @@ public class SearchResultResourceImpl extends BaseSearchResultResourceImpl {
 		Pagination pagination, Sort[] sorts,
 		SearchRequestBody searchRequestBody) {
 
+		// LPD-110533 DECIDE (Search REST APIs): Same as headless paging, plus
+		// the permission filter limit for users who aren't admins. Fix: Product
+		// decision.
 		SearchRequestBuilder searchRequestBuilder =
 			_searchRequestBuilderFactory.builder(
 			).companyId(

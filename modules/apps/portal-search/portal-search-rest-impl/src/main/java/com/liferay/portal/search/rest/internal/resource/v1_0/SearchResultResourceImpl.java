@@ -363,8 +363,10 @@ public class SearchResultResourceImpl extends BaseSearchResultResourceImpl {
 		SearchRequestBody searchRequestBody) {
 
 		// LPD-110533 DECIDE (Search REST APIs): Same as headless paging, plus
-		// the permission filter limit for users who aren't admins. Fix: Product
-		// decision.
+		// the permission filter limit for users who aren't admins. Worse: this
+		// API doesn't turn off the fallback to the last page, so page 2 at 500
+		// per page looped forever with the cap on (see the fallback loop row).
+		// Fix: Product decision, after the loop is guarded.
 		SearchRequestBuilder searchRequestBuilder =
 			_searchRequestBuilderFactory.builder(
 			).companyId(

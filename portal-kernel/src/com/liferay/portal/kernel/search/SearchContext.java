@@ -575,6 +575,10 @@ public class SearchContext implements Serializable {
 	private long[] _classTypeIds;
 	private boolean _commitImmediately;
 	private long _companyId;
+	// LPD-110533 FINE (Default page size 0–5): Callers that set no size now get
+	// 5; only explicit "all" or large windows reach the cap. Anything that
+	// relied on the old default now silently gets 5 (see the legacy Search
+	// portlet).
 	private int _end = 5;
 	private String[] _entryClassNames;
 	private final Map<String, Facet> _facets = new ConcurrentHashMap<>();

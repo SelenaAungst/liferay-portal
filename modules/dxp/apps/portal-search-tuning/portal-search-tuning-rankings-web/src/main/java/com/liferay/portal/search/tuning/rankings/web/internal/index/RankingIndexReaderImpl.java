@@ -34,6 +34,8 @@ import java.util.List;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+// LPD-110533 NOT AFFECTED (Other direct engine queries): Query the engine
+// directly and skip the cap.
 /**
  * @author Bryan Engler
  * @author Petteri Karttunen

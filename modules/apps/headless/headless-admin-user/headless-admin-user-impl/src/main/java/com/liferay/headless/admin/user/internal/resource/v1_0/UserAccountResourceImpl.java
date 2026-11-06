@@ -1704,6 +1704,11 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 			Integer status)
 		throws Exception {
 
+		// LPD-110533 BREAKS (Batch export: users): Pages 100 at a time. Page 6
+		// starts at 500 and comes back empty, so the export stops and reports
+		// success. The uncapped total is recorded next to 500 processed. Fix:
+		// Fix once in the batch executor: bypass or ID-based paging. It could
+		// also fail the task when processed is less than total.
 		return SearchUtil.search(
 			actions, booleanQueryUnsafeConsumer, filter, User.class.getName(),
 			search, pagination,

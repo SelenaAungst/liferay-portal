@@ -192,6 +192,8 @@ public class SXPBlueprintSuggestionsContributor
 		SearchRequestBuilder searchRequestBuilder =
 			_searchRequestBuilderFactory.builder();
 
+		// LPD-110533 FINE (Similar results and Blueprint suggestions): Small
+		// fixed sizes.
 		searchRequestBuilder.from(
 			0
 		).queryString(

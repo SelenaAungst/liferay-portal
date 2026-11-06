@@ -94,6 +94,7 @@ public class RankingGetSearchResultsBuilder {
 				_complexQueryPartBuilderFactory, _groupLocalService,
 				_searchRequestBuilderFactory);
 
+		// LPD-110533 FINE (Result rankings): User paging.
 		return rankingSearchRequestBuilder.adminSearch(
 			true
 		).companyId(

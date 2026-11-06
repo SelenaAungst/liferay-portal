@@ -82,6 +82,8 @@ public class AssetVocabularyItemSelectorViewDescriptor
 					JavaConstants.JAKARTA_PORTLET_REQUEST),
 				_portletURL, null, "there-are-no-items-to-display");
 
+		// LPD-110533 FINE (Vocabulary selector): Uses the index only when
+		// searching by keyword.
 		if (searchContainer.isSearch()) {
 			searchContainer.setResultsAndTotal(
 				AssetVocabularyLocalServiceUtil.searchVocabularies(

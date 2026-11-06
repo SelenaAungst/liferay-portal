@@ -53,6 +53,10 @@ public class AlternateKeywordQueryHitsProcessor implements HitsProcessor {
 			IndexSearcherHelperUtil.suggestKeywordQueries(searchContext, 5);
 
 		if (ArrayUtil.isNotEmpty(querySuggestions)) {
+			// LPD-110533 FINE (Search plumbing that passes the window through):
+			// Pass the caller's window through without looping. (The indexer
+			// and faceted searcher loop only through the permission filter
+			// row.).
 			searchContext.setKeywords(querySuggestions[0]);
 		}
 

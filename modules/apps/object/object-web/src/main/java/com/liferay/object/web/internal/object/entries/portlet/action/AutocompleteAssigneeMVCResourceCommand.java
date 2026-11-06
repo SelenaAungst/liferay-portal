@@ -61,6 +61,8 @@ public class AutocompleteAssigneeMVCResourceCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		// LPD-110533 FINE (Page content changes, assignee autocomplete): Fixed
+		// sizes of 20.
 		SearchResponse searchResponse = _searcher.search(
 			_searchRequestBuilderFactory.builder(
 			).companyId(

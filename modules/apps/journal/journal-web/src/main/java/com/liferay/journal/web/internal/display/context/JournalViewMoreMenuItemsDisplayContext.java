@@ -103,6 +103,11 @@ public class JournalViewMoreMenuItemsDisplayContext {
 		searchContainer.setResultsAndTotal(
 			() -> {
 				if (Objects.equals(getOrderByCol(), "name")) {
+					// LPD-110533 SMALL FIX (Web Content "More" structures
+					// dialog): Sorted by name, it fetches everything and pages
+					// in memory. Past 500 structures, later pages throw an
+					// IllegalArgumentException. Fix: Sort in the query and page
+					// normally.
 					List<DDMStructure> ddmStructures =
 						JournalFolderServiceUtil.searchDDMStructures(
 							_themeDisplay.getCompanyId(),

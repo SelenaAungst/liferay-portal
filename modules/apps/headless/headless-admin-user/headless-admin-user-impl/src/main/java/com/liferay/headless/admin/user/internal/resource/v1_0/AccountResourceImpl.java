@@ -269,6 +269,8 @@ public class AccountResourceImpl
 			String search, Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
+		// LPD-110533 BREAKS (Batch export: accounts): Same paging as users.
+		// Fix: Same: fix once in the batch executor.
 		return SearchUtil.search(
 			HashMapBuilder.<String, Map<String, String>>put(
 				"create",

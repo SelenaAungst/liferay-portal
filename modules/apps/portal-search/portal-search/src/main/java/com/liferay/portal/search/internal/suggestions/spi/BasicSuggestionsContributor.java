@@ -144,6 +144,8 @@ public class BasicSuggestionsContributor implements SuggestionsContributor {
 				searchContext2.setUserId(searchContext1.getUserId());
 			});
 
+		// LPD-110533 FINE (Search bar suggestions and omni search): Small sizes
+		// (default 5, configurable).
 		searchRequestBuilder.size(
 			size
 		).queryString(

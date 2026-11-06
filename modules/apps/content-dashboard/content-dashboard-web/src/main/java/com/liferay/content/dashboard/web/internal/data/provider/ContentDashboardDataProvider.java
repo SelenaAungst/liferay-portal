@@ -42,6 +42,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+// LPD-110533 FINE (Content Dashboard lists, filters, and charts): Paged, or 0
+// documents with aggregations.
 /**
  * @author David Arques
  */

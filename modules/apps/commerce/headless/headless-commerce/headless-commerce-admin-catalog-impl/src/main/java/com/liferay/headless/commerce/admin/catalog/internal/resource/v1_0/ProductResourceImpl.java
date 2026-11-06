@@ -1222,6 +1222,8 @@ public class ProductResourceImpl
 			Locale preferredLocale)
 		throws Exception {
 
+		// LPD-110533 BREAKS (Batch export: commerce products and orders): Same
+		// paging as users. Fix: Same.
 		return SearchUtil.search(
 			null, booleanQuery -> booleanQuery.getPreBooleanFilter(), filter,
 			CPDefinition.class.getName(), search, pagination,
@@ -1230,6 +1232,10 @@ public class ProductResourceImpl
 			searchContext -> {
 				searchContext.setCompanyId(companyId);
 
+				// LPD-110533 BREAKS (Catalog filter for admin searches):
+				// Collects every visible catalog with a search. Past 500
+				// catalogs (rare), items in later catalogs disappear. Fix: Read
+				// catalogs from the DB (getCommerceCatalogs exists).
 				long[] commerceCatalogGroupIds = transformToLongArray(
 					_commerceCatalogLocalService.search(companyId),
 					CommerceCatalog::getGroupId);

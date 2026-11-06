@@ -138,6 +138,11 @@ public class CPDefinitionOptionValueRelRelatedInfoItemCollectionProvider
 			cpQuery.setOrderByCol1(Field.NAME);
 			cpQuery.setOrderByType1("ASC");
 
+			// LPD-110533 BREAKS (Add to cart with externally defined options):
+			// Loads only the first 500 products by name. A chosen value outside
+			// that list is silently dropped, so the order item loses its option
+			// price or bundle item. Fix: Look up the chosen value directly
+			// instead of loading every value.
 			List<CPDefinitionOptionValueRel> cpDefinitionOptionValueRels =
 				_getCPDefinitionOptionValueRels(
 					_cpDefinitionHelper.searchCPDefinitions(

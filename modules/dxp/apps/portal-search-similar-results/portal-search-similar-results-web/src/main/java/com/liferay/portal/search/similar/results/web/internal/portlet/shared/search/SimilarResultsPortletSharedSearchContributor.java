@@ -122,6 +122,8 @@ public class SimilarResultsPortletSharedSearchContributor
 			searchRequestBuilder, similarResultsPortletPreferences,
 			portletSharedSearchSettings);
 
+		// LPD-110533 FINE (Similar results and Blueprint suggestions): Small
+		// fixed sizes.
 		searchRequestBuilder.query(
 			_getMoreLikeThisQuery(
 				criteria.getUID(), similarResultsPortletPreferences)

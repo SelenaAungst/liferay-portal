@@ -781,6 +781,8 @@ public class DefaultObjectEntryManagerImpl
 			objectDefinition, scopeKey);
 	}
 
+	// LPD-110533 NOT AFFECTED (Batch export: object entries): Reads from the
+	// database.
 	@Override
 	public Page<ObjectEntry> getObjectEntries(
 			long companyId, ObjectDefinition objectDefinition, String scopeKey,
@@ -936,6 +938,8 @@ public class DefaultObjectEntryManagerImpl
 				GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK))));
 	}
 
+	// LPD-110533 NOT AFFECTED (Batch export: object entries): See the note
+	// above.
 	@Override
 	public Page<ObjectEntry> getObjectEntries(
 			long companyId, ObjectDefinition objectDefinition, String scopeKey,

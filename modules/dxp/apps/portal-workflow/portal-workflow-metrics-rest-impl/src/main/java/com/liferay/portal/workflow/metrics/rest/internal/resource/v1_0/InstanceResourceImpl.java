@@ -92,6 +92,8 @@ import org.osgi.service.component.annotations.ServiceScope;
 /**
  * @author Rafael Praxedes
  */
+// LPD-110533 NOT AFFECTED (Workflow metrics charts and SLA jobs): Query the
+// engine directly and skip the cap.
 @Component(
 	properties = "OSGI-INF/liferay/rest/v1_0/instance.properties",
 	scope = ServiceScope.PROTOTYPE, service = InstanceResource.class

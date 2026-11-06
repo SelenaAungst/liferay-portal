@@ -43,6 +43,8 @@ import java.util.Map;
 
 import org.osgi.service.component.annotations.Reference;
 
+// LPD-110533 NOT AFFECTED (Workflow metrics charts and SLA jobs): Query the
+// engine directly and skip the cap.
 /**
  * @author Inácio Nery
  */

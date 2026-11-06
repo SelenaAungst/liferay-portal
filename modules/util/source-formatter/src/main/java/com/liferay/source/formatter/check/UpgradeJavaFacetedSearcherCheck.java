@@ -14,6 +14,7 @@ import com.liferay.source.formatter.parser.JavaTerm;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// LPD-110533 FINE (Source formatter check): Build tool, not runtime.
 /**
  * @author Nícolas Moura
  */

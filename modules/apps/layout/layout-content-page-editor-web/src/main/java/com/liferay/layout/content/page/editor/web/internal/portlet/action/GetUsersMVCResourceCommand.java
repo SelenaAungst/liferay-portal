@@ -51,6 +51,8 @@ public class GetUsersMVCResourceCommand extends BaseMVCResourceCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		// LPD-110533 DECIDE (Page editor user picker): Shows at most 500 users.
+		// Fix: Product decision, or the DB path.
 		for (User user :
 				_userLocalService.search(
 					themeDisplay.getCompanyId(), StringPool.BLANK,

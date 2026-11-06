@@ -2302,6 +2302,8 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		Indexer<Layout> indexer = IndexerRegistryUtil.getIndexer(
 			Layout.class.getName());
 
+		// LPD-110533 FINE (Index-backed counts): They read the engine total
+		// (getLength or searchCount), not a list size.
 		Hits hits = indexer.search(
 			_buildSearchContext(
 				groupId, userId, privateLayout, keywords, types, statuses,

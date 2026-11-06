@@ -122,6 +122,10 @@ public class CommerceShipmentDisplayContext
 		return sb.toString();
 	}
 
+	// LPD-110533 BREAKS (Add Shipment account dropdown): Built from every
+	// shippable order. Past 500 shippable orders, accounts whose orders fall
+	// later vanish from the dropdown, with no keyword fallback. Fix: Build the
+	// account list from the DB, or with an aggregation.
 	public List<AccountEntry> getCommerceAccountsWithShippableOrders()
 		throws PortalException {
 

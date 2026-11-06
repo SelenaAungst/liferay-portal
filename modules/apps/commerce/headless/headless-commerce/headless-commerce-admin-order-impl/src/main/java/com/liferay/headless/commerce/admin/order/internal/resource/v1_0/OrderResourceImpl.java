@@ -611,6 +611,8 @@ public class OrderResourceImpl extends BaseOrderResourceImpl {
 			boolean useSearchResultPermissionFilter)
 		throws Exception {
 
+		// LPD-110533 BREAKS (Batch export: commerce products and orders): Same
+		// paging as users. Fix: Same.
 		return SearchUtil.search(
 			null, booleanQuery -> booleanQuery.getPreBooleanFilter(), filter,
 			CommerceOrder.class.getName(), search, pagination,

@@ -108,6 +108,11 @@ public class SearchResultsPortletSharedSearchContributor
 		searchRequestBuilder.paginationStartParameterName(
 			paginationStartParameterName);
 
+		// LPD-110533 DECIDE (Search Results widget): Pages that start at result
+		// 500 or later come back empty while the paginator shows the full
+		// total. For users who aren't admins, permitted results past raw hit
+		// 500 are dropped (see the permission filter row). Fix: Product
+		// decision.
 		int paginationDelta = Math.min(
 			GetterUtil.getInteger(
 				portletSharedSearchSettings.getParameter(

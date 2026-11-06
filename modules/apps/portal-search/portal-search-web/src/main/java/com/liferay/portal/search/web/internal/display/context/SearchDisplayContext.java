@@ -116,6 +116,11 @@ public class SearchDisplayContext {
 			"no-results-were-found-that-matched-the-keywords-x",
 			"<strong>" + HtmlUtil.escape(keywords) + "</strong>", false);
 
+		// LPD-110533 SMALL FIX (Legacy Search portlet): Never sets a page
+		// window, so since LPD-97916 it fetches only the default 5 results on
+		// every page while the paginator shows the full total. This is a bug
+		// from LPD-97916, not from the cap. Fix: Set the window from the search
+		// container.
 		SearchContainer<Document> searchContainer = new SearchContainer<>(
 			_renderRequest, getPortletURL(), null, emptyResultMessage);
 

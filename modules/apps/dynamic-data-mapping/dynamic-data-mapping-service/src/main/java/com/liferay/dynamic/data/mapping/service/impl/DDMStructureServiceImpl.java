@@ -331,6 +331,8 @@ public class DDMStructureServiceImpl extends DDMStructureServiceBaseImpl {
 		return structure;
 	}
 
+	// LPD-110533 DECIDE (DDM structures remote API): No Java caller; remote
+	// clients get at most 500. Fix: Product decision.
 	@Override
 	public List<DDMStructure> getStructures(
 		long companyId, long[] groupIds, long classNameId, int status) {

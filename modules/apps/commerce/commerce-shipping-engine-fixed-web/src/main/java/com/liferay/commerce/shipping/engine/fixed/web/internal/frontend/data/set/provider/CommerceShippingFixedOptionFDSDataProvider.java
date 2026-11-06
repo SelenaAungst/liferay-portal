@@ -78,6 +78,9 @@ public class CommerceShippingFixedOptionFDSDataProvider
 					getCommerceShippingFixedOptionId()));
 	}
 
+	// LPD-110533 SMALL FIX (Shipping option count): Counts by listing, so the
+	// count stops at 500. Fix: Use the existing count method (and pass the
+	// keywords).
 	@Override
 	public int getItemsCount(
 			FDSKeywords fdsKeywords, HttpServletRequest httpServletRequest)

@@ -19,6 +19,8 @@ import com.liferay.portal.search.tuning.synonyms.index.name.SynonymSetIndexName;
 
 import java.util.List;
 
+// LPD-110533 NOT AFFECTED (Other direct engine queries): Query the engine
+// directly and skip the cap.
 /**
  * @author Bryan Engler
  */

@@ -97,6 +97,9 @@ public abstract class SXPBlueprintInfoCollectionProvider<T>
 		return false;
 	}
 
+	// LPD-110533 DECIDE (Collections "Display All"): Shows at most 500 while
+	// the count shows the real total. Object collections are affected only on
+	// the index-backed path. Includes LPD-112650. Fix: Product decision.
 	protected SearchRequestBuilder getSearchRequestBuilder(
 		CollectionQuery collectionQuery, Pagination pagination) {
 

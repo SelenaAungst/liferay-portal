@@ -209,6 +209,10 @@ public class DepotEntryAdminSearchProvider {
 		return searchContext;
 	}
 
+	// LPD-110533 SMALL FIX (Asset Library count): Uses searchCount, but for
+	// permission-checked types that runs a full search and subtracts hidden
+	// libraries found in the first 500. Non-admins get an overcount; admins get
+	// the right number. Fix: A permission-aware DB count.
 	private int _getTotal(int depotEntryType, PortletRequest portletRequest)
 		throws SearchException {
 

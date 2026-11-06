@@ -287,6 +287,11 @@ public class CommerceOptionValueHelperImpl
 				continue;
 			}
 
+			// LPD-110533 BREAKS (Add to cart with externally defined options):
+			// Loads only the first 500 products by name. A chosen value outside
+			// that list is silently dropped, so the order item loses its option
+			// price or bundle item. Fix: Look up the chosen value directly
+			// instead of loading every value.
 			cpDefinitionOptionRelsMap.put(
 				cpDefinitionOptionRel,
 				_cpCollectionProviderHelper.getCPDefinitionOptionValueRels(

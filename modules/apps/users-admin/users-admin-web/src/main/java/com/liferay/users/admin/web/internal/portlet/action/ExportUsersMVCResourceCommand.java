@@ -182,6 +182,10 @@ public class ExportUsersMVCResourceCommand extends BaseMVCResourceCommand {
 		if (organizationId > 0) {
 			params.put("usersOrgs", Long.valueOf(organizationId));
 		}
+		// LPD-110533 BREAKS (Users export CSV): Any keyword or filter uses the
+		// index with all results. An exporter limited to their own
+		// organizations always takes this path, even with no filter. Fix: Use
+		// the existing DB path (userFinder).
 		else if (!exportAllUsers) {
 			User user = themeDisplay.getUser();
 

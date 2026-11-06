@@ -114,6 +114,8 @@ public class AnalyticsUsersUtil {
 		return Collections.emptyList();
 	}
 
+	// LPD-110533 FINE (Analytics user counts): Asks for 0 documents and reads
+	// only the total.
 	private static SearchContext _createSearchContext() {
 		SearchContext searchContext = new SearchContext();
 

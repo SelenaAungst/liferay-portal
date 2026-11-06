@@ -480,6 +480,9 @@ public class BulkActionBulkSelectionFactory {
 			searchRequestBuilder.queryString(_search);
 		}
 
+		// LPD-110533 BREAKS (Bulk "select all" actions): Asks for all results,
+		// so the action runs on only 500 items. It can be destructive. Fix:
+		// Bypass. The existing DB path only covers one object type.
 		SearchResponse searchResponse = _searcher.search(
 			searchRequestBuilder.build());
 

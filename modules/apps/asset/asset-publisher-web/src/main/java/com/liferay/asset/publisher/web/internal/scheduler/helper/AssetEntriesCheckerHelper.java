@@ -335,6 +335,11 @@ public class AssetEntriesCheckerHelper {
 				}
 			}
 
+			// LPD-110533 DECIDE (Asset Publisher subscription emails): The
+			// dynamic and provider paths follow the limit (default 20). When
+			// the publisher uses a collection, it always asks for all results
+			// whatever the limit, so items past 500 are never checked. Fix:
+			// Product decision.
 			InfoPage<AssetEntry> infoPage =
 				_assetListAssetEntryProvider.getAssetEntriesInfoPage(
 					assetListEntry, segmentsEntryIds, null, null,

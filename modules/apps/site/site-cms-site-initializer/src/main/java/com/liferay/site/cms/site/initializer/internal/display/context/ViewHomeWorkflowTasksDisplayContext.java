@@ -109,6 +109,10 @@ public class ViewHomeWorkflowTasksDisplayContext {
 			_themeDisplay.getUser()
 		).build();
 
+		// LPD-110533 BREAKS (CMS home workflow tasks structure list): Same call
+		// as the Structure Builder. Past 500 published structures (rare), later
+		// ones are missing from the section's structure list. Fix: Read the
+		// object definitions from the DB by folder.
 		Page<ObjectDefinition> page =
 			objectDefinitionResource.getObjectDefinitionsPage(
 				null, null,

@@ -77,6 +77,8 @@ public class CPDefinitionSpecificationOptionValueDisplayContext
 	public List<CPOptionCategory> getCPOptionCategories()
 		throws PortalException {
 
+		// LPD-110533 FINE (Option category dropdown): Few categories in
+		// practice.
 		BaseModelSearchResult<CPOptionCategory>
 			cpOptionCategoryBaseModelSearchResult =
 				_cpOptionCategoryService.searchCPOptionCategories(

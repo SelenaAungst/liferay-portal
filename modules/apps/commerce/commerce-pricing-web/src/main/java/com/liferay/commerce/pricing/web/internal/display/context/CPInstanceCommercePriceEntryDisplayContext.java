@@ -236,6 +236,9 @@ public class CPInstanceCommercePriceEntryDisplayContext
 			maxFractionDigits = commerceCurrency.getMaxFractionDigits();
 		}
 
+		// LPD-110533 DECIDE (Price-list picker for a SKU): Business setups can
+		// have more than 500 price lists. Fix: Product decision, or read from
+		// the DB.
 		BaseModelSearchResult<CommercePriceList>
 			commercePriceListBaseModelSearchResult =
 				_commercePriceListService.searchCommercePriceLists(

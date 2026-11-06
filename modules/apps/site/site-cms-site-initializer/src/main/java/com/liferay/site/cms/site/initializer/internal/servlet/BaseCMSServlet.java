@@ -84,6 +84,8 @@ public abstract class BaseCMSServlet extends HttpServlet {
 		super.service(httpServletRequest, httpServletResponse);
 	}
 
+	// LPD-110533 BREAKS (CMS "select all" ZIP download): Asks for all results.
+	// The ZIP holds only 500 files. Fix: Bypass.
 	protected SearchHits getSelectAllSearchHits(
 			HttpServletRequest httpServletRequest)
 		throws PortalException {

@@ -194,6 +194,8 @@ public class CPOptionFacetsPortletSharedSearchContributor
 		return facetConfiguration;
 	}
 
+	// LPD-110533 FINE (Product option facets): Asks for 0 documents; facets
+	// cover all matches.
 	protected SearchContext buildSearchContext(RenderRequest renderRequest)
 		throws PortalException {
 

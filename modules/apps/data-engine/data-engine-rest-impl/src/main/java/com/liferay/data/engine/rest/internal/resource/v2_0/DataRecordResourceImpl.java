@@ -168,6 +168,8 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getDDLRecordSet(
 			dataRecordCollectionId);
 
+		// LPD-110533 FINE (Headless and data engine lists): Pass the caller's
+		// page through; the deep-paging problem is the headless paging row.
 		return SearchUtil.search(
 			Collections.emptyMap(),
 			booleanQuery -> {

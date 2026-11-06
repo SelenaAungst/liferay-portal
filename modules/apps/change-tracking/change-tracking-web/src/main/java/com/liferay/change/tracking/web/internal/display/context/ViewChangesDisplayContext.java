@@ -1405,6 +1405,10 @@ public class ViewChangesDisplayContext {
 			", modelClassNameId=", modelClassNameId, "}");
 	}
 
+	// LPD-110533 BREAKS (Publications change lists): Counts, filter options,
+	// and per-row data all come from listing every change. Past 500 changes the
+	// counts and filters are wrong and later rows lose their data. Fix:
+	// Aggregations, or read the CTEntry table.
 	private Map<Long, ObjectValuePair<String, Integer>> _getObjectValuePairs(
 		long ctCollectionId, long groupId, boolean showHideable,
 		ThemeDisplay themeDisplay) {

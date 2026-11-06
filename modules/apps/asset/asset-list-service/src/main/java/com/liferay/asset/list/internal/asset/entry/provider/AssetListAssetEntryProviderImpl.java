@@ -653,6 +653,9 @@ public class AssetListAssetEntryProviderImpl
 		}
 	}
 
+	// LPD-110533 DECIDE (Collections "Display All"): Shows at most 500 while
+	// the count shows the real total. Object collections are affected only on
+	// the index-backed path. Includes LPD-112650. Fix: Product decision.
 	private InfoPage<AssetEntry> _getDynamicAssetEntries(
 		long[][] assetCategoryIds, AssetEntryQuery assetEntryQuery,
 		AssetListEntry assetListEntry, String[][] assetTagNames, int end,
@@ -847,6 +850,12 @@ public class AssetListAssetEntryProviderImpl
 		return groupIds;
 	}
 
+	// LPD-110533 BREAKS (Manual collections): Fetches all items from the index,
+	// then sorts by saved position in memory. With more than 500 items the
+	// index returns its own top 500, so the wrong items show on every page.
+	// Also affects the Asset Publisher over a manual collection. Fix: Read from
+	// the DB when no filters are set; otherwise page through the saved ID list
+	// in chunks of 500 or fewer.
 	private InfoPage<AssetEntry> _getManualAssetEntries(
 		long[][] assetCategoryIds, AssetListEntry assetListEntry,
 		String[][] assetTagNames, int end,

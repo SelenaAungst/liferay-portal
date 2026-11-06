@@ -249,6 +249,8 @@ public class DownloadObjectEntryFolderCMSServlet extends BaseCMSServlet {
 			ZipWriter zipWriter)
 		throws IOException, PortalException {
 
+		// LPD-110533 BREAKS (CMS "select all" ZIP download): Asks for all
+		// results. The ZIP holds only 500 files. Fix: Bypass.
 		SearchHits searchHits = getSelectAllSearchHits(httpServletRequest);
 
 		for (SearchHit searchHit : searchHits.getSearchHits()) {
@@ -359,6 +361,7 @@ public class DownloadObjectEntryFolderCMSServlet extends BaseCMSServlet {
 		}
 	}
 
+	// LPD-110533 NOT AFFECTED (CMS single-folder ZIP): Reads from the database.
 	private void _zipObjectEntryFolder(
 			long groupId, long objectEntryFolderId, String path,
 			ThemeDisplay themeDisplay, ZipWriter zipWriter)

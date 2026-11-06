@@ -110,6 +110,9 @@ public class UserGroupItemSelectorViewDisplayContext {
 			if (_userGroupItemSelectorCriterion.
 					isFilterManageableUserGroups()) {
 
+				// LPD-110533 FINE (User group selector): Only the "manageable"
+				// branch fetches all; a manager whose groups are past 500 must
+				// type a keyword.
 				_searchContainer.setResultsAndTotal(
 					UsersAdminUtil.filterUserGroups(
 						_themeDisplay.getPermissionChecker(),

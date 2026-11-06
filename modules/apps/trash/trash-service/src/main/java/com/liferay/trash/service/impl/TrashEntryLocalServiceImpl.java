@@ -338,6 +338,8 @@ public class TrashEntryLocalServiceImpl extends TrashEntryLocalServiceBaseImpl {
 			_classNameLocalService.getClassNameId(className), classPK);
 	}
 
+	// LPD-110533 FINE (Trash keyword search): Paged. The default list and
+	// emptying the trash read from the DB.
 	@Override
 	public BaseModelSearchResult<TrashEntry> searchTrashEntries(
 		long companyId, long groupId, long userId, String keywords, int start,

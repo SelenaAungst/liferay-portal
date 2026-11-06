@@ -555,6 +555,10 @@ public class BatchEnginePortletDataHandler extends BasePortletDataHandler {
 							setExportImportDescriptorWithSafeCloseable(
 								exportImportDescriptor)) {
 
+					// LPD-110533 BREAKS (Export/Import and staging:
+					// batch-engine types): These run the same batch export
+					// executor over headless resources, so they stop at item
+					// 500. Fix: Same fix as batch export.
 					BatchEngineExportTaskExecutor.Result result =
 						_executeExportTask(
 							Integer.MAX_VALUE, portletDataContext,

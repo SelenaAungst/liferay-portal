@@ -103,6 +103,9 @@ public class OpenSearchIndexSearcher extends BaseIndexSearcher {
 
 			int end = searchContext.getEnd();
 
+			// LPD-110533 SMALL FIX (ES8 and OpenSearch searchers): Turn "all
+			// results" into index.search.limit. Only matters for callers that
+			// skip the chokepoint. Fix: Read the new setting.
 			if (end == QueryUtil.ALL_POS) {
 				end = GetterUtil.getInteger(
 					PropsUtil.get(PropsKeys.INDEX_SEARCH_LIMIT));

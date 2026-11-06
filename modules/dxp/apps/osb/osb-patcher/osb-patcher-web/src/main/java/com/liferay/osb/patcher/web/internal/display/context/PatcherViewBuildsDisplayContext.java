@@ -372,6 +372,9 @@ public class PatcherViewBuildsDisplayContext {
 		return _patcherBuild;
 	}
 
+	// LPD-110533 FINE (Patcher build versions (internal)): Not a list of all
+	// builds. Unpaginated table for a single key; more than 500 versions of one
+	// key is unrealistic.
 	public SearchContainer<PatcherBuild> getSearchContainer() throws Exception {
 		if (_patcherBuildSearchContainer != null) {
 			return _patcherBuildSearchContainer;

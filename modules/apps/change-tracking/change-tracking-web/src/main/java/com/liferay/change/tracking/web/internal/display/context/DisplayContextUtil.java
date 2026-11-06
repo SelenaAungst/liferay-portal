@@ -51,6 +51,10 @@ import java.util.Set;
  */
 public class DisplayContextUtil {
 
+	// LPD-110533 BREAKS (Publications change lists): Counts, filter options,
+	// and per-row data all come from listing every change. Past 500 changes the
+	// counts and filters are wrong and later rows lose their data. Fix:
+	// Aggregations, or read the CTEntry table.
 	public static Map<Long, Document> getCTEntryDocuments(
 		long ctCollectionId, ThemeDisplay themeDisplay) {
 

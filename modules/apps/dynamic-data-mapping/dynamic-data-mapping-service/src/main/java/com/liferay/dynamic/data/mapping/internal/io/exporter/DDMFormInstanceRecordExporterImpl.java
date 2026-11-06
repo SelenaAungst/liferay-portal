@@ -75,6 +75,7 @@ public class DDMFormInstanceRecordExporterImpl
 			DDMFormInstanceRecordExporterResponse.Builder.newBuilder();
 
 		try {
+			// LPD-110533 NOT AFFECTED (Forms export): Reads from the database.
 			List<DDMFormInstanceRecord> ddmFormInstanceRecords =
 				ddmFormInstanceRecordLocalService.getFormInstanceRecords(
 					ddmFormInstanceId, status, start, end, orderByComparator);

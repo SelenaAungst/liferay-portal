@@ -1112,6 +1112,8 @@ public class StructuredContentResourceImpl
 			Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
+		// LPD-110533 BREAKS (Batch export: web content): Same paging as users.
+		// Fix: Same.
 		return SearchUtil.search(
 			actions, booleanQueryUnsafeConsumer,
 			FilterUtil.processFilter(_ddmIndexer, filter),

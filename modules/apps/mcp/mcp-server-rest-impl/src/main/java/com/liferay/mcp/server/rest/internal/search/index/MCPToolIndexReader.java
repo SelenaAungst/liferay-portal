@@ -69,6 +69,8 @@ import java.util.regex.Pattern;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+// LPD-110533 NOT AFFECTED (Other direct engine queries): Query the engine
+// directly and skip the cap.
 /**
  * @author Petteri Karttunen
  */

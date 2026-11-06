@@ -320,6 +320,7 @@ public class CommerceOrderGenerator {
 
 		// Commerce accounts
 
+		// LPD-110533 FINE (Commerce demo order generator): Demo only.
 		BaseModelSearchResult<AccountEntry> baseModelSearchResult =
 			_accountEntryLocalService.searchAccountEntries(
 				group.getCompanyId(), null,

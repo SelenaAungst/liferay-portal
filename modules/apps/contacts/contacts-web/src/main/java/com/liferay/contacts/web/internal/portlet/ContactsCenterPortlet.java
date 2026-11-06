@@ -921,6 +921,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				).build();
 
 			Group group = themeDisplay.getScopeGroup();
+			// LPD-110533 NOT AFFECTED (Contacts Center admins): Always takes
+			// the DB finder path.
 			Layout layout = themeDisplay.getLayout();
 
 			if (group.isUser() && layout.isPublicLayout()) {

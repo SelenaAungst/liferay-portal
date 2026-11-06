@@ -100,6 +100,7 @@ public class CommerceAccountGroupItemSelectorViewDisplayContext {
 			params.put("permissionUserId", permissionUserId);
 		}
 
+		// LPD-110533 FINE (Account group selector): A keyword narrows it.
 		BaseModelSearchResult<AccountGroup> baseModelSearchResult =
 			_accountGroupLocalService.searchAccountGroups(
 				_commerceAccountItemSelectorRequestHelper.getCompanyId(),

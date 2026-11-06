@@ -33,6 +33,8 @@ public abstract class BaseFolderEntryBulkSelection<T extends RepositoryModel<T>>
 		_repositoryProvider = repositoryProvider;
 	}
 
+	// LPD-110533 NOT AFFECTED (Documents and Media bulk select): Reads from the
+	// database.
 	@Override
 	public <E extends PortalException> void forEach(
 			UnsafeConsumer<T, E> unsafeConsumer)

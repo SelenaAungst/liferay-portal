@@ -804,6 +804,9 @@ public class CommerceSiteInitializerImpl implements CommerceSiteInitializer {
 			return null;
 		}
 
+		// LPD-110533 FINE (Site initializer lookups): Call a resource with no
+		// page, but filter by exact name or site and read only the first
+		// result.
 		Page<Channel> channelsPage = channelResource.getChannelsPage(
 			null,
 			channelResource.toFilter(

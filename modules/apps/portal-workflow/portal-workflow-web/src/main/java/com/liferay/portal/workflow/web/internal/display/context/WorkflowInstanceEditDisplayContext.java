@@ -268,6 +268,8 @@ public class WorkflowInstanceEditDisplayContext
 			OrderByComparator<WorkflowLog> orderByComparator =
 				_workflowComparatorFactory.getLogCreateDateComparator(false);
 
+			// LPD-110533 FINE (Workflow instance logs): One instance never has
+			// 500 logs in practice. (Its tasks come from the DB.).
 			_workflowLogs =
 				_workflowLogManager.getWorkflowLogsByWorkflowInstance(
 					workflowInstanceRequestHelper.getCompanyId(),

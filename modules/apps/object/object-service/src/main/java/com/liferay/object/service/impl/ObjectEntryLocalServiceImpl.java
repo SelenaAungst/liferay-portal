@@ -2318,6 +2318,9 @@ public class ObjectEntryLocalServiceImpl
 			objectDefinition, objectEntry, serviceContext, trashEntry, userId);
 	}
 
+	// LPD-110533 NOT AFFECTED (Object entry lists and relationships): Read from
+	// the database. The index-backed searchObjectEntries method has no
+	// production caller.
 	@Override
 	public BaseModelSearchResult<ObjectEntry> searchObjectEntries(
 			long groupId, long objectDefinitionId, String keywords, int cur,

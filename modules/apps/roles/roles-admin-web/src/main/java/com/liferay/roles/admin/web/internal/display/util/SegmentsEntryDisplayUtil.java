@@ -59,6 +59,9 @@ public class SegmentsEntryDisplayUtil {
 		return StringPool.BLANK;
 	}
 
+	// LPD-110533 SMALL FIX (Segment member lists): The paging assumes
+	// 10,000-result chunks, so pages around or past 500 come back short or
+	// empty. Fix: Read the new setting (config reference plus a min()).
 	public static List<User> getSegmentsEntryUsers(
 			long segmentsEntryId, int start, int end)
 		throws Exception {

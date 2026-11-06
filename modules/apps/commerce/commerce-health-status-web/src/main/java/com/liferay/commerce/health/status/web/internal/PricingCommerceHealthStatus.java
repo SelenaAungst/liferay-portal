@@ -129,6 +129,9 @@ public class PricingCommerceHealthStatus implements CommerceHealthStatus {
 				commercePricingConfiguration.commercePricingCalculationKey(),
 				CommercePricingConstants.VERSION_2_0)) {
 
+			// LPD-110533 BREAKS (Commerce Health Check: base price lists): Only
+			// the first 500 catalogs are checked and fixed (rare). Fix: Read
+			// catalogs from the DB.
 			List<CommerceCatalog> commerceCatalogs =
 				_commerceCatalogLocalService.search(companyId);
 

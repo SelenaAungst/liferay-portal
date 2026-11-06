@@ -217,6 +217,8 @@ public class GetLayoutContentChangesMVCResourceCommand
 		long companyId, long ctCollectionId, int cur, Locale locale,
 		long plid) {
 
+		// LPD-110533 FINE (Page content changes, assignee autocomplete): Fixed
+		// sizes of 20.
 		SearchRequestBuilder searchRequestBuilder =
 			_searchRequestBuilderFactory.builder(
 			).companyId(

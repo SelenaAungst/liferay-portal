@@ -1070,6 +1070,9 @@ public class BundleSiteInitializer implements SiteInitializer {
 				Keyword existingKeyword = null;
 
 				if (groupId != 0) {
+					// LPD-110533 FINE (Site initializer lookups): Call a
+					// resource with no page, but filter by exact name or site
+					// and read only the first result.
 					Page<Keyword> page =
 						keywordResource.getAssetLibraryKeywordsPage(
 							groupId, null, null,
@@ -1082,6 +1085,8 @@ public class BundleSiteInitializer implements SiteInitializer {
 				else {
 					groupId = serviceContext.getScopeGroupId();
 
+					// LPD-110533 FINE (Site initializer lookups): See the note
+					// above.
 					Page<Keyword> page = keywordResource.getSiteKeywordsPage(
 						groupId, null, null,
 						keywordResource.toFilter(
@@ -1377,6 +1382,8 @@ public class BundleSiteInitializer implements SiteInitializer {
 				}
 			}
 			else {
+				// LPD-110533 FINE (Site initializer lookups): See the note
+				// above.
 				Page<ObjectDefinition> objectDefinitionsPage =
 					objectDefinitionResource.getObjectDefinitionsPage(
 						null, null,
@@ -4369,6 +4376,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 				serviceContext.fetchUser()
 			).build();
 
+		// LPD-110533 FINE (Site initializer lookups): See the note above.
 		Page<TaxonomyCategory> taxonomyCategoryPage =
 			taxonomyCategoryResource.getTaxonomyCategoryTaxonomyCategoriesPage(
 				parentTaxonomyCategoryId, "", null,
@@ -4448,6 +4456,8 @@ public class BundleSiteInitializer implements SiteInitializer {
 							taxonomyVocabulary);
 			}
 			else {
+				// LPD-110533 FINE (Site initializer lookups): See the note
+				// above.
 				Page<TaxonomyVocabulary> taxonomyVocabularyPage =
 					taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 						groupId, "", null,

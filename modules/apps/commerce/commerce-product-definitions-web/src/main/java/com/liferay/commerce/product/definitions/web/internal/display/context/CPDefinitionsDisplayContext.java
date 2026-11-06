@@ -303,6 +303,9 @@ public class CPDefinitionsDisplayContext
 	}
 
 	public List<CommerceCatalog> getCommerceCatalogs() throws PortalException {
+		// LPD-110533 DECIDE (Catalog dropdowns): Past 500 catalogs (rare),
+		// entries silently disappear. Fix: Product decision, or
+		// getCommerceCatalogs.
 		return _commerceCatalogService.search(
 			cpRequestHelper.getCompanyId(), null, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);

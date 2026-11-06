@@ -62,6 +62,9 @@ public class IndexerHelper {
 			_getOldIndexClassPKs(companyId, segmentEntryId), newClassPKs);
 	}
 
+	// LPD-110533 FINE (Segment membership recompute): Pages by ID, so it still
+	// gets everyone, with more requests. If it ever came back short it would
+	// delete members, so keep a test on it.
 	public Set<Long> getNewClassPKs(long segmentsEntryId)
 		throws PortalException {
 
@@ -139,6 +142,8 @@ public class IndexerHelper {
 		return SetUtil.fromIterator(iterable.iterator());
 	}
 
+	// LPD-110533 FINE (Segment existing members): Pages by ID. Same result,
+	// more requests.
 	private Set<Long> _getOldIndexClassPKs(long companyId, long segmentsEntryId)
 		throws Exception {
 

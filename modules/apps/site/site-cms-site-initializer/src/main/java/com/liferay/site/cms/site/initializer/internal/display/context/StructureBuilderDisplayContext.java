@@ -360,6 +360,12 @@ public class StructureBuilderDisplayContext {
 
 		sb.append(") and (status/any(x:(x eq 0)))");
 
+		// LPD-110533 BREAKS (CMS Structure Builder structure list): Calls the
+		// object definitions resource with no page, which means all results
+		// after PR 2358. Past 500 published structures (rare), later ones are
+		// missing, and structures that use them can render blank again: the
+		// symptom PR 2358 fixes. Fix: Read the object definitions from the DB
+		// by folder.
 		Page<ObjectDefinition> page =
 			objectDefinitionResource.getObjectDefinitionsPage(
 				null, null,

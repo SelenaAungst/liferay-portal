@@ -14,6 +14,9 @@ import java.util.Objects;
 /**
  * @author Eudaldo Alonso
  */
+// LPD-110533 FINE (Paged collections and Asset Publisher): They page at the
+// source. Pages past 500 are empty, and a page that straddles 500 comes back
+// short, while the paginator shows the full count.
 public class CollectionPaginationUtil {
 
 	public static final String PAGINATION_TYPE_NONE = "none";
@@ -33,6 +36,10 @@ public class CollectionPaginationUtil {
 				(numberOfItemsPerPage >
 					PropsValues.SEARCH_CONTAINER_PAGE_MAX_DELTA)) {
 
+				// LPD-110533 DECIDE (Collections "Display All"): Shows at most
+				// 500 while the count shows the real total. Object collections
+				// are affected only on the index-backed path. Includes
+				// LPD-112650. Fix: Product decision.
 				numberOfItemsPerPage =
 					PropsValues.SEARCH_CONTAINER_PAGE_MAX_DELTA;
 			}

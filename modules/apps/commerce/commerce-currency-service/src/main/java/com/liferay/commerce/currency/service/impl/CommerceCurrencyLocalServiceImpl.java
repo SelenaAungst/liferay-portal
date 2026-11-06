@@ -599,6 +599,9 @@ public class CommerceCurrencyLocalServiceImpl
 
 		if (start != QueryUtil.ALL_POS) {
 			searchRequestBuilder.from(start);
+			// LPD-110533 FINE (Commerce admin lists with a size bug): Paged
+			// lists. They pass the end as the size (a separate bug), so they
+			// reach the cap a little sooner. Fix: Fix the size separately.
 			searchRequestBuilder.size(end);
 		}
 

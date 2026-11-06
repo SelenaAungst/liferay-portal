@@ -318,6 +318,9 @@ public class CPInstanceHelperImpl implements CPInstanceHelper {
 			}
 
 			if (cpDefinitionOptionRel.isDefinedExternally()) {
+				// LPD-110533 DECIDE (Option value pickers from a collection):
+				// Values past 500 never appear. A page that starts past 500
+				// logs an ERROR and comes back empty. Fix: Product decision.
 				cpDefinitionOptionRelsMap.put(
 					cpDefinitionOptionRel,
 					_cpCollectionProviderHelper.getCPDefinitionOptionValueRels(

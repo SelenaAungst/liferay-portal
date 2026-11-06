@@ -1929,6 +1929,8 @@ public class OrganizationLocalServiceImpl
 
 		Indexer<?> indexer = OrganizationUsersSearcher.getInstance();
 
+		// LPD-110533 FINE (Index-backed counts): They read the engine total
+		// (getLength or searchCount), not a list size.
 		SearchContext searchContext = buildSearchContext(
 			companyId, parentOrganizationId, keywords, status, params,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);

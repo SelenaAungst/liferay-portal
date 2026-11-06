@@ -429,6 +429,10 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 					_ddmFormInstance.getFormInstanceId(),
 					WorkflowConstants.STATUS_ANY));
 		}
+		// LPD-110533 SMALL FIX (Form entries keyword search): The total is
+		// real, but the rows are never cut to the current page, so every page
+		// shows the same first 500 or fewer entries. Fix: Page in the query
+		// (follow-up already planned in LPD-106596).
 		else {
 			ddmFormInstanceRecordSearch.setResultsAndTotal(
 				_ddmFormInstanceRecordLocalService.searchFormInstanceRecords(

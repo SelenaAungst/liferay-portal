@@ -40,6 +40,8 @@ import jakarta.portlet.PortletResponse;
 import java.util.Locale;
 import java.util.Objects;
 
+// LPD-110533 FINE (Content Dashboard lists, filters, and charts): Paged, or 0
+// documents with aggregations.
 /**
  * @author Cristina González
  */

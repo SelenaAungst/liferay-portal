@@ -111,6 +111,9 @@ public class CommerceSubscriptionEntryServiceImpl
 			getPermissionChecker(), null,
 			CommerceActionKeys.MANAGE_COMMERCE_SUBSCRIPTIONS);
 
+		// LPD-110533 BREAKS (Channel filter for admin searches): Collects every
+		// channel with a search. Past 500 channels (rare), items in later
+		// channels disappear. Fix: Read channels from the DB.
 		return commerceSubscriptionEntryLocalService.
 			searchCommerceSubscriptionEntries(
 				companyId,

@@ -185,6 +185,9 @@ public class CommerceInventoryWarehouseItemsDisplayContext {
 		return true;
 	}
 
+	// LPD-110533 DECIDE (Warehouse list on SKU inventory): Warehouses past 500
+	// can't be managed from this screen. Fix: Product decision, or read from
+	// the DB.
 	private List<CommerceInventoryWarehouse> _getCommerceInventoryWarehouses()
 		throws PortalException {
 

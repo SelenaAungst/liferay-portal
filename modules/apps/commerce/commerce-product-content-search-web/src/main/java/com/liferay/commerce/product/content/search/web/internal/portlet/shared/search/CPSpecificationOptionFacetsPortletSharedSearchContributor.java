@@ -142,6 +142,7 @@ public class CPSpecificationOptionFacetsPortletSharedSearchContributor
 		}
 	}
 
+	// LPD-110533 FINE (Product specification facets): Same as option facets.
 	protected SearchContext buildSearchContext(RenderRequest renderRequest)
 		throws PortalException {
 

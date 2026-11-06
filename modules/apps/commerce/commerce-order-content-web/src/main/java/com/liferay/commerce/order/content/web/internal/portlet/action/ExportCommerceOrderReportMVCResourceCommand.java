@@ -77,6 +77,8 @@ public class ExportCommerceOrderReportMVCResourceCommand
 		long commerceOrderId = ParamUtil.getLong(
 			resourceRequest, "commerceOrderId");
 
+		// LPD-110533 NOT AFFECTED (Commerce order report): Reads from the
+		// database.
 		CommerceOrder commerceOrder = _commerceOrderService.getCommerceOrder(
 			commerceOrderId);
 

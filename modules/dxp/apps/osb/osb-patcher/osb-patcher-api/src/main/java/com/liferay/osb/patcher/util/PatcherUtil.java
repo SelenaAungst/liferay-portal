@@ -396,6 +396,7 @@ public class PatcherUtil {
 		searchContext.setGroupIds(new long[] {themeDisplay.getScopeGroupId()});
 		searchContext.setUserId(themeDisplay.getUserId());
 
+		// LPD-110533 NOT AFFECTED (Patcher search utility): No callers.
 		searchContext.setEnd(QueryUtil.ALL_POS);
 
 		if (Validator.isNotNull(keywords)) {

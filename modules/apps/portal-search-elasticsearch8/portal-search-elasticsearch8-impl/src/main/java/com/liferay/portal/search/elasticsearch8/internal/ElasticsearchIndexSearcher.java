@@ -567,6 +567,16 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 
 		Hits hits;
 
+		// LPD-110533 BREAKS (ES8 and OpenSearch fallback-to-last-page loop):
+		// With the cap, a page starting at 500 or later becomes a 0-size
+		// window. The recalculation keeps returning the same page, so the
+		// request never ends and fires the same search about 500 times a
+		// second. Ran it: the search REST API page 2 at 500 per page with 600
+		// users looped until stopped with a debugger. Only headless SearchUtil
+		// turns the fallback off; the Search Results widget, search REST, and
+		// other callers leave it on. Fix: The cap must return empty before the
+		// searcher runs when start is 500 or more, or the loop must stop on an
+		// empty window.
 		while (true) {
 			SearchSearchRequest searchSearchRequest = createSearchSearchRequest(
 				searchRequest, searchContext, query);

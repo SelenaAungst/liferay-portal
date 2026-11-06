@@ -110,6 +110,15 @@ public class DefaultSearchResultPermissionFilter
 				_getSelectedFieldNames(queryConfig.getSelectedFieldNames()));
 		}
 
+		// LPD-110533 DECIDE (Default permission filter): Main design question.
+		// For users who aren't admins it walks raw results from 0 in windows of
+		// up to 1000. A cap at the chokepoint stops it at raw hit 500, so
+		// permitted results past that point disappear even from page 1, on
+		// every permission-filtered search: the Search Results widget,
+		// headless, and indexer searches. Permission-aware counts also
+		// overcount. It still reads index.search.limit. Fix: Decide whether the
+		// cap applies to the filter's internal windows or only to the page the
+		// caller asked for.
 		int end = searchContext.getEnd();
 		int start = searchContext.getStart();
 
@@ -424,6 +433,7 @@ public class DefaultSearchResultPermissionFilter
 
 	private class SlidingWindowSearcher {
 
+		// LPD-110533 DECIDE (Default permission filter): See the note above.
 		public Hits search(int start, int end, SearchContext searchContext) {
 			if (_log.isDebugEnabled()) {
 				_log.debug("Starting sliding window searches");
@@ -697,6 +707,7 @@ public class DefaultSearchResultPermissionFilter
 			}
 		}
 
+		// LPD-110533 DECIDE (Default permission filter): See the note above.
 		private boolean _stopSearching(
 			int docsCollectedCount, int originalHitsSize,
 			Document[] preFilteredDocs, int slidingWindowEnd,

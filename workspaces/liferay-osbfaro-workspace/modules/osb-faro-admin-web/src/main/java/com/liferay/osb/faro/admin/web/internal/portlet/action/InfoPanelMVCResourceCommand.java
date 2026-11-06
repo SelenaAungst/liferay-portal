@@ -30,6 +30,8 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 
+	// LPD-110533 NOT AFFECTED (Analytics Cloud admin info panel): Does no
+	// search at all; it reads one project from the database.
 	@Override
 	protected void doServeResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)

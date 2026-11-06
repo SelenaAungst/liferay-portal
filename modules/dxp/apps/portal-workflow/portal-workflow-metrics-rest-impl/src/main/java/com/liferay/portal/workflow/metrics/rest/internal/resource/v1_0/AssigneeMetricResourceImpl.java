@@ -458,6 +458,9 @@ public class AssigneeMetricResourceImpl extends BaseAssigneeMetricResourceImpl {
 		return GetterUtil.getLong(valueCountAggregationResult.getValue());
 	}
 
+	// LPD-110533 BREAKS (Workflow assignee metrics filter): Asks for all
+	// matching users; past 500 the metrics are wrong. Fix: Existing DB path
+	// (userFinder); keyword matching differs slightly.
 	private Set<Long> _getUserIds(String keywords, Long[] roleIds) {
 		LinkedHashMap<String, Object> params = new LinkedHashMap<>(1);
 

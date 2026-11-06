@@ -153,6 +153,8 @@ public class SearchOmniSearchResultProvider
 	}
 
 	private SearchResponse _search(String keywords, ThemeDisplay themeDisplay) {
+		// LPD-110533 FINE (Search bar suggestions and omni search): Small sizes
+		// (default 5, configurable).
 		return _searcher.search(
 			_searchRequestBuilderFactory.builder(
 			).companyId(

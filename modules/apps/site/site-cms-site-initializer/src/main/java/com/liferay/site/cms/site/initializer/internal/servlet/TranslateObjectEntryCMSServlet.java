@@ -248,6 +248,8 @@ public class TranslateObjectEntryCMSServlet extends BaseCMSServlet {
 		throws PortalException {
 
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
+		// LPD-110533 BREAKS (CMS "select all" translation export): Asks for all
+		// results. Only 500 items are exported. Fix: Bypass.
 		SearchHits searchHits = getSelectAllSearchHits(httpServletRequest);
 
 		for (SearchHit searchHit : searchHits.getSearchHits()) {

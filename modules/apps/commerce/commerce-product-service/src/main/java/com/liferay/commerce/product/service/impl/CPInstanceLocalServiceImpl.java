@@ -1037,6 +1037,8 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 			"Unable to fix the search index after 10 attempts");
 	}
 
+	// LPD-110533 FINE (Product SKU count): Count-only path, which the cap
+	// doesn't touch.
 	@Override
 	public int searchCPInstancesCount(
 			long companyId, String cpInstanceUuid, long cProductId,

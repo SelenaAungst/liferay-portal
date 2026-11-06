@@ -237,6 +237,9 @@ public class ODataSearchAdapterImpl implements ODataSearchAdapter {
 		}
 	}
 
+	// LPD-110533 FINE (Segment membership recompute): Pages by ID, so it still
+	// gets everyone, with more requests. If it ever came back short it would
+	// delete members, so keep a test on it.
 	private void _search(
 			BooleanQuery booleanQuery, Consumer<Document[]> consumer,
 			Indexer<?> indexer, SearchContext searchContext, int start, int end)
@@ -247,6 +250,9 @@ public class ODataSearchAdapterImpl implements ODataSearchAdapter {
 		}
 
 		Document document = null;
+		// LPD-110533 SMALL FIX (Segment member lists): The paging assumes
+		// 10,000-result chunks, so pages around or past 500 come back short or
+		// empty. Fix: Read the new setting (config reference plus a min()).
 		int indexSearchLimit = GetterUtil.getInteger(
 			PropsUtil.get(PropsKeys.INDEX_SEARCH_LIMIT));
 

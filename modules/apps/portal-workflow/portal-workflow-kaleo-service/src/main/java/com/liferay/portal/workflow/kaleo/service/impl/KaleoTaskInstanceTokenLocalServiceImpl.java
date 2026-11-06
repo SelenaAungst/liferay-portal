@@ -375,6 +375,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			kaleoTaskInstanceTokenQuery);
 	}
 
+	// LPD-110533 NOT AFFECTED (Workflow instance tasks): Reads from the
+	// database.
 	@Override
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 		long kaleoInstanceId, Boolean completed, int start, int end,

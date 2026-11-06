@@ -2318,6 +2318,10 @@ public class AssetPublisherDisplayContext {
 				assetTagNames = new String[][] {getAllAssetTagNames()};
 			}
 
+			// LPD-110533 FINE (Paged collections and Asset Publisher): They
+			// page at the source. Pages past 500 are empty, and a page that
+			// straddles 500 comes back short, while the paginator shows the
+			// full count.
 			return _assetListAssetEntryProvider.getAssetEntriesInfoPage(
 				assetListEntry, _getSegmentsEntryIds(assetListEntry),
 				assetCategoryIds, assetTagNames, StringPool.BLANK,

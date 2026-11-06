@@ -110,9 +110,11 @@ public class ViewHomeWorkflowTasksDisplayContext {
 		).build();
 
 		// LPD-110533 BREAKS (CMS home workflow tasks structure list): Same call
-		// as the Structure Builder. Past 500 published structures (rare), later
-		// ones are missing from the section's structure list. Fix: Read the
-		// object definitions from the DB by folder.
+		// as the Structure Builder. The page uses the list as an allow-list
+		// (WorkflowService.ts:43-52), so past 500 published structures (rare),
+		// workflow tasks for the newest structures silently disappear from "My
+		// workflow tasks". Fix: Read the object definitions from the DB by
+		// folder.
 		Page<ObjectDefinition> page =
 			objectDefinitionResource.getObjectDefinitionsPage(
 				null, null,

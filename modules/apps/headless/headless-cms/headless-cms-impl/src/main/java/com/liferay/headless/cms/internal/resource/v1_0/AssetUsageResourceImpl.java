@@ -392,6 +392,8 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 		return assetUsages;
 	}
 
+	// LPD-110533 BREAKS (Spaces in asset usage): Asks for all results. Low
+	// risk; 500+ spaces is rare. Fix: Read from the DB.
 	private List<DepotEntry> _getViewableDepotEntries() throws Exception {
 		List<DepotEntry> depotEntries = new ArrayList<>();
 

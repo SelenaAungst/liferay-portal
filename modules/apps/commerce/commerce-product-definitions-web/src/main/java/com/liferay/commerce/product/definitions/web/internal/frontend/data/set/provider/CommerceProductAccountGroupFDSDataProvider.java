@@ -84,6 +84,10 @@ public class CommerceProductAccountGroupFDSDataProvider
 			fdsKeywords.getKeywords());
 	}
 
+	// LPD-110533 BREAKS (Product account-group list): Uses every permitted
+	// account group as a filter. Past 500 groups, links are hidden and the
+	// count is wrong. Fix: Query the product's links first, then check
+	// permission.
 	private List<AccountGroup> _getAccountGroups(
 			HttpServletRequest httpServletRequest)
 		throws PortalException {

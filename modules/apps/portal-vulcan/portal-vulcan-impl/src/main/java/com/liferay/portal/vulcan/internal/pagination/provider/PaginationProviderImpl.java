@@ -44,6 +44,11 @@ public class PaginationProviderImpl implements PaginationProvider {
 		}
 	}
 
+	// LPD-110533 DECIDE (Headless REST and GraphQL paging): A page is at most
+	// 500, but page 2 at 500 per page starts at item 500 and comes back empty,
+	// while totalCount advertises more. No client can read past item 500. This
+	// is the batch export failure outside the batch engine. Fix: Product
+	// decision; probably the biggest one.
 	private Pagination _getPagination(
 		int pageSizeLimit, int requestPage, int requestPageSize) {
 

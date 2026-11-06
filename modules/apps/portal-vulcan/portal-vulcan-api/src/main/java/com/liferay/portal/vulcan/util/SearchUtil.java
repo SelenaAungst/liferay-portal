@@ -98,6 +98,9 @@ public class SearchUtil {
 
 		searchContextUnsafeConsumer.accept(searchContext);
 
+		// LPD-110533 BREAKS (Batch export: other headless types): Same paging
+		// as users. 114 resource files use SearchUtil; only the 6 above were
+		// traced end to end. Fix: Same.
 		if (searchContext.isVulcanCheckPermissions()) {
 			hits = indexer.search(searchContext);
 			totalCount = indexer.searchCount(searchContext);

@@ -102,6 +102,9 @@ public class CommercePriceListDisplayContext
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
+		// LPD-110533 DECIDE (Catalog dropdowns): Past 500 catalogs (rare),
+		// entries silently disappear. Fix: Product decision, or
+		// getCommerceCatalogs.
 		return commerceCatalogService.search(
 			themeDisplay.getCompanyId(), null, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);

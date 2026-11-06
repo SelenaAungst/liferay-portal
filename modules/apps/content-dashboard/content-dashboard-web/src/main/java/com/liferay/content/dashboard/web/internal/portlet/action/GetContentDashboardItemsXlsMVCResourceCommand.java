@@ -257,6 +257,10 @@ public class GetContentDashboardItemsXlsMVCResourceCommand
 		ThemeDisplay themeDisplay, ResourceRequest resourceRequest,
 		WorkbookBuilder workbookBuilder) {
 
+		// LPD-110533 BREAKS (Content Dashboard Excel export): Asks for 1000 at
+		// a time (configurable) and stops on a short page, so it ends at 500.
+		// Paging at 500 doesn't help, because page 2 starts at 500. Fix:
+		// Bypass, or page by ID with start always 0 (like PIM).
 		int searchQueryResultWindowLimit =
 			_defaultSearchResultPermissionFilterConfiguration.
 				searchQueryResultWindowLimit();

@@ -52,6 +52,8 @@ public class PatcherViewFixesDisplayContext {
 		return _patcherFix;
 	}
 
+	// LPD-110533 FINE (Patcher fix versions (internal)): Same as build
+	// versions.
 	public SearchContainer<PatcherFix> getSearchContainer() throws Exception {
 		if (_patcherPatcherFixSearchContainer != null) {
 			return _patcherPatcherFixSearchContainer;

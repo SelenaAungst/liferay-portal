@@ -46,6 +46,8 @@ public abstract class BaseBatchEngineTaskItemDelegate<T>
 		return new ModifiedDateEntityModel();
 	}
 
+	// LPD-110533 BREAKS (Commerce machine-learning data): Same paging as users.
+	// SKU forecasts don't use search. Fix: Same.
 	@Override
 	public final Page<T> read(
 			Filter filter, Pagination pagination, Sort[] sorts,

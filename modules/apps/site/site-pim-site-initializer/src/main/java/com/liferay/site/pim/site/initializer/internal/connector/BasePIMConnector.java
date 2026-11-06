@@ -213,6 +213,9 @@ public abstract class BasePIMConnector implements PIMConnector {
 						GetterUtil.getLong(
 							document.getLong(Field.ENTRY_CLASS_PK)))));
 
+			// LPD-110533 BREAKS (PIM connector sync): Asks for 1000 at a time
+			// and stops on a short page, so only 500 products sync. Fix: Lower
+			// the page size to 500 or less; it already pages by ID.
 			if (documents.size() < _SEARCH_SIZE) {
 				break;
 			}

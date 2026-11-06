@@ -1071,8 +1071,9 @@ public class BundleSiteInitializer implements SiteInitializer {
 
 				if (groupId != 0) {
 					// LPD-110533 FINE (Site initializer lookups): Call a
-					// resource with no page, but filter by exact name or site
-					// and read only the first result.
+					// resource with no page, but read only the first result of
+					// a window that starts at 0, and each filter narrows to one
+					// item anyway.
 					Page<Keyword> page =
 						keywordResource.getAssetLibraryKeywordsPage(
 							groupId, null, null,
@@ -4536,6 +4537,9 @@ public class BundleSiteInitializer implements SiteInitializer {
 					taxonomyCategory);
 		}
 
+		// LPD-110533 FINE (Site initializer lookups): Call a resource with no
+		// page, but read only the first result of a window that starts at 0,
+		// and each filter narrows to one item anyway.
 		Page<TaxonomyCategory> taxonomyCategoryPage =
 			taxonomyCategoryResource.
 				getTaxonomyVocabularyTaxonomyCategoriesPage(
@@ -5363,6 +5367,9 @@ public class BundleSiteInitializer implements SiteInitializer {
 		).build();
 
 		for (int i = 0; i < jsonArray.length(); i++) {
+			// LPD-110533 FINE (Site initializer lookups): Call a resource with
+			// no page, but read only the first result of a window that starts
+			// at 0, and each filter narrows to one item anyway.
 			Page<AccountRole> accountRolePage =
 				accountRoleResource.
 					getAccountAccountRolesByExternalReferenceCodePage(

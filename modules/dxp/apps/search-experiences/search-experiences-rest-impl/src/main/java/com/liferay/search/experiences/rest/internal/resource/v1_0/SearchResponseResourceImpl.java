@@ -88,6 +88,9 @@ public class SearchResponseResourceImpl extends BaseSearchResponseResourceImpl {
 	protected SearchResponse search(
 		Pagination pagination, String queryString, SXPBlueprint sxpBlueprint) {
 
+		// LPD-110533 DECIDE (Search REST APIs): Same as headless paging, plus
+		// the permission filter limit for users who aren't admins. Fix: Product
+		// decision.
 		SearchRequestBuilder searchRequestBuilder =
 			_searchRequestBuilderFactory.builder(
 			).companyId(

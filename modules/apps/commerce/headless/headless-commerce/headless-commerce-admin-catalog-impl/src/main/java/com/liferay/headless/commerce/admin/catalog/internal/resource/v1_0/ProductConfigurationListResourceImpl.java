@@ -130,6 +130,10 @@ public class ProductConfigurationListResourceImpl
 						new long[] {commerceCatalog.getGroupId()});
 				}
 				else {
+					// LPD-110533 BREAKS (Catalog filter for admin searches):
+					// Collects every visible catalog with a search. Past 500
+					// catalogs (rare), items in later catalogs disappear. Fix:
+					// Read catalogs from the DB (getCommerceCatalogs exists).
 					searchContext.setGroupIds(
 						transformToLongArray(
 							_commerceCatalogLocalService.search(

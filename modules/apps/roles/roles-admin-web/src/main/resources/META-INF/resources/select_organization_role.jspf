@@ -22,6 +22,8 @@ if (step == 1) {
 	String keywords = ParamUtil.getString(request, "keywords");
 
 	if (Validator.isNull(keywords)) {
+		// LPD-110533 NOT AFFECTED (Organization role picker): Reads from the
+		// database.
 		organizations = OrganizationLocalServiceUtil.getOrganizations(StringUtil.split(organizationIds, 0L));
 	}
 	else {

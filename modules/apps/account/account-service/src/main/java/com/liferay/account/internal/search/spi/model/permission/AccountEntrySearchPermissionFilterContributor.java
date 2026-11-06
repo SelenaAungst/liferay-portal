@@ -104,6 +104,10 @@ public class AccountEntrySearchPermissionFilterContributor
 						companyId, organization.getTreePath() + "%/"));
 			}
 
+			// LPD-110533 BREAKS (Account access through organizations):
+			// Collects the allowed organizations with an all-results search.
+			// Past 500 organizations, accounts become invisible to that
+			// manager. Fix: Use the DB tree walk already in the same method.
 			BaseModelSearchResult<Organization> baseModelSearchResult =
 				_organizationLocalService.searchOrganizations(
 					companyId, OrganizationConstants.ANY_PARENT_ORGANIZATION_ID,

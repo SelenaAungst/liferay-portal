@@ -70,6 +70,12 @@ public class SearchResultsMVCRenderCommand implements MVCRenderCommand {
 				renderRequest.getParameter("keywords"),
 				renderRequest.getLocale());
 
+			// LPD-110533 SMALL FIX (System Settings search): Fetches every
+			// match, then pages in memory, so rows and total stop at 500. The
+			// keyword is optional, there are about 511 settings, and matches
+			// from other scopes also take places in the 500, so it is already
+			// close to the limit. Fix: Page in the query, or read the settings
+			// list directly.
 			Hits hits = indexer.search(searchContext);
 
 			renderRequest.setAttribute(

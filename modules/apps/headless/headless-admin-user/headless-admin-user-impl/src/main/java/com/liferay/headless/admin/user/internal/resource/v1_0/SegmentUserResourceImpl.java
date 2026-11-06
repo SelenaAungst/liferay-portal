@@ -37,6 +37,9 @@ public class SegmentUserResourceImpl extends BaseSegmentUserResourceImpl {
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.getSegmentsEntry(segmentId);
 
+		// LPD-110533 SMALL FIX (Segment member lists): The paging assumes
+		// 10,000-result chunks, so pages around or past 500 come back short or
+		// empty. Fix: Read the new setting (config reference plus a min()).
 		return Page.of(
 			transformToList(
 				ArrayUtil.toArray(

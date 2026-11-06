@@ -25,6 +25,8 @@ import com.liferay.portal.workflow.metrics.search.index.constants.WorkflowMetric
 
 import java.util.List;
 
+// LPD-110533 NOT AFFECTED (Workflow metrics charts and SLA jobs): Query the
+// engine directly and skip the cap.
 /**
  * @author Inácio Nery
  */

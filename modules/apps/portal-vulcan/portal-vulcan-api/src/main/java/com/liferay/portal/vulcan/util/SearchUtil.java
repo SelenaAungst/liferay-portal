@@ -225,10 +225,12 @@ public class SearchUtil {
 		// Builder renders blank for structures with repeatable groups. PR 2358
 		// (open) makes a missing page mean all results, so once it merges every
 		// such call is an all-results search and the cap cuts it at 500. REST
-		// requests over HTTP always get a page, so only Java callers are
-		// affected. 8 product callers found; see the CMS structure list and
-		// site initializer rows. Fix: Merge PR 2358 for the 5-result bug;
-		// callers that can pass 500 need their own fix.
+		// and GraphQL requests over HTTP always get a page (at most 500 by
+		// default; the limit is configurable per company), so only Java callers
+		// are affected. 10 product callers found, confirmed by a second pass;
+		// see the CMS structure list and site initializer rows. Fix: Merge PR
+		// 2358 for the 5-result bug; callers that can pass 500 need their own
+		// fix.
 		if (pagination != null) {
 			searchContext.setEnd(pagination.getEndPosition());
 		}

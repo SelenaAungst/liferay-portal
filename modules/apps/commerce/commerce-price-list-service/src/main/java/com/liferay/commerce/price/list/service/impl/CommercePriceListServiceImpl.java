@@ -371,6 +371,10 @@ public class CommercePriceListServiceImpl
 			getPermissionChecker(), groupId, actionId);
 	}
 
+	// LPD-110533 BREAKS (Catalog filter for admin searches): Collects every
+	// visible catalog with a search. Past 500 catalogs (rare), items in later
+	// catalogs disappear. Fix: Read catalogs from the DB (getCommerceCatalogs
+	// exists).
 	private long[] _getGroupIds(long companyId) throws PortalException {
 		return TransformUtil.transformToLongArray(
 			_commerceCatalogService.search(

@@ -56,6 +56,7 @@ public class FolderTitleLookupImpl implements FolderTitleLookup {
 		return null;
 	}
 
+	// LPD-110533 FINE (Folder title lookup): Asks for 1 result.
 	private SearchContext _getSearchContext() {
 		SearchContext searchContext = SearchContextFactory.getInstance(
 			_httpServletRequest);

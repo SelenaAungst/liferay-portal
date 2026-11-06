@@ -75,6 +75,7 @@ public abstract class HitsOpenSearchImpl extends BaseOpenSearchImpl {
 				searchContext.setGroupIds(new long[] {groupId});
 			}
 
+			// LPD-110533 FINE (OpenSearch search endpoint): User paging.
 			int end = startPage * itemsPerPage;
 
 			searchContext.setEnd(end);

@@ -860,6 +860,8 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
+		// LPD-110533 BREAKS (Batch export: documents): Same paging as users.
+		// Fix: Same.
 		return SearchUtil.search(
 			actions, booleanQueryUnsafeConsumer,
 			FilterUtil.processFilter(_ddmIndexer, filter), _indexer, keywords,
